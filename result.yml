@@ -1,0 +1,331 @@
+openapi: 3.0.0
+info:
+  title: Sikshya Mart API Swagger
+  description: Sikshya Mart API documentation
+  version: '1.0'
+  x-logo:
+    url: https://github.com/joolfe/logoBanner.png
+    backgroundColor: '#FFFFFF'
+    altText: logo
+  termsOfService: '#'
+  contact:
+    name: Mero Vision
+    url: https://merovision.com
+    email: merovision720@gmail.com
+  license:
+    name: MIT
+    url: https://es.wikipedia.org/wiki/Licencia_MIT
+servers:
+  - url: https://api.sikshyamart.com/
+    description: server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Website
+  - name: Website > Auth
+  - name: Admin
+  - name: Admin > Auth
+  - name: Admin > User
+  - name: Admin > Category
+  - name: Admin > Product
+  - name: Admin > Site Settings
+paths:
+  /api/admin/login:
+    post:
+      tags:
+        - Admin > Auth
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: Password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/user/{id}:
+    get:
+      tags:
+        - Admin > User
+      summary: show single admin data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/categories:
+    post:
+      tags:
+        - Admin > Category
+      summary: store category data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: iPhone
+                parent_id:
+                  type: integer
+                  example: '2'
+                description:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Category
+      summary: show all category list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/categories/{slug}:
+    post:
+      tags:
+        - Admin > Category
+      summary: update category data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: iPhone
+                parent_id:
+                  type: integer
+                  example: '2'
+                description:
+                  type: string
+                  example: hy
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Category
+      summary: show single category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/products:
+    post:
+      tags:
+        - Admin > Product
+      summary: store product data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: string
+                product_unit_id:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+                selling_price:
+                  type: string
+                cross_price:
+                  type: string
+                cost_price:
+                  type: string
+                stock_quantity:
+                  type: string
+                sku:
+                  type: string
+                product_weight:
+                  type: string
+                meta_title:
+                  type: string
+                meta_description:
+                  type: string
+                meta_keywords:
+                  type: string
+                attributes:
+                  type: string
+                specifications:
+                  type: string
+                is_featured:
+                  type: string
+                is_active:
+                  type: string
+                product_image[]:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/site-settings:
+    post:
+      tags:
+        - Admin > Site Settings
+      summary: store site settings
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                store_name:
+                  type: string
+                  example: hy
+                slogan:
+                  type: string
+                logo:
+                  type: string
+                fav_icon:
+                  type: string
+                address:
+                  type: string
+                contact_no:
+                  type: string
+                email:
+                  type: string
+                home_page_banner_1:
+                  type: string
+                home_page_banner_2:
+                  type: string
+                home_page_banner_3:
+                  type: string
+                privacy_policy:
+                  type: string
+                terms_conditions:
+                  type: string
+                facebook_link:
+                  type: string
+                instagram_link:
+                  type: string
+                tiktok_link:
+                  type: string
+                whatsapp_number:
+                  type: string
+                about_us:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Site Settings
+      summary: show all site settings
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
