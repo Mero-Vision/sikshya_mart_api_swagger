@@ -32,6 +32,7 @@ tags:
   - name: Admin > Category
   - name: Admin > Product
   - name: Admin > Site Settings
+  - name: Admin > Product Units
 paths:
   /api/admin/login:
     post:
@@ -205,41 +206,53 @@ paths:
               type: object
               properties:
                 category_id:
-                  type: string
+                  type: integer
+                  example: '2'
                 product_unit_id:
-                  type: string
+                  type: integer
+                  example: '1'
                 name:
                   type: string
+                  example: Apsara Pencil1
                 description:
                   type: string
+                  example: High-quality graphite pencil for smooth writing.
                 selling_price:
-                  type: string
-                cross_price:
-                  type: string
+                  type: integer
+                  example: '50'
+                wholesale_price:
+                  type: integer
+                  example: '32'
                 cost_price:
-                  type: string
+                  type: integer
+                  example: '25'
                 stock_quantity:
-                  type: string
+                  type: integer
+                  example: '100'
                 sku:
                   type: string
+                  example: APSARA-PEN-002
                 product_weight:
-                  type: string
+                  type: integer
+                  example: '15'
                 meta_title:
                   type: string
+                  example: Apsara Pencil - Smooth Writing
                 meta_description:
                   type: string
+                  example: Buy Apsara Pencil for school and office use.
                 meta_keywords:
                   type: string
+                  example: pencil, apsara, stationary
                 attributes:
                   type: string
+                  example: '{"color":"black","material":"wood"}'
                 specifications:
                   type: string
-                is_featured:
-                  type: string
-                is_active:
-                  type: string
+                  example: '{"length":"7 inch","hardness":"HB"}'
                 product_image[]:
                   type: string
+                  format: binary
       security:
         - bearerAuth: []
       parameters:
@@ -253,6 +266,349 @@ paths:
           description: Successful response
           content:
             application/json: {}
+    get:
+      tags:
+        - Admin > Product
+      summary: show all product list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.3.14
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Mon, 10 Nov 2025 11:50:16 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 2,
+                            "category_id": 2,
+                            "product_unit_id": 1,
+                            "name": "Apsara Pencil1",
+                            "slug": "apsara-pencil1",
+                            "description": "High-quality graphite pencil for smooth writing.",
+                            "selling_price": "50.00",
+                            "wholesale_price": "32.00",
+                            "cost_price": "25.00",
+                            "stock_quantity": "100.00",
+                            "sku": "APSARA-PEN-002",
+                            "product_weight": "15",
+                            "meta_title": "Apsara Pencil - Smooth Writing",
+                            "meta_description": "Buy Apsara Pencil for school and office use.",
+                            "meta_keywords": "pencil, apsara, stationary",
+                            "attributes": "{\"color\": \"black\", \"material\": \"wood\"}",
+                            "specifications": "{\"length\": \"7 inch\", \"hardness\": \"HB\"}",
+                            "created_at": "2025-11-10T11:48:17.000000Z",
+                            "updated_at": "2025-11-10T11:48:17.000000Z",
+                            "product_images": [
+                                {
+                                    "id": 2,
+                                    "file_name": "Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg",
+                                    "url": "http://localhost:8000/storage/2/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg",
+                                    "created_at": "2025-11-10T11:48:17.000000Z"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 1,
+                            "category_id": 2,
+                            "product_unit_id": 1,
+                            "name": "Apsara Pencil",
+                            "slug": null,
+                            "description": "High-quality graphite pencil for smooth writing.",
+                            "selling_price": "50.00",
+                            "wholesale_price": "32.00",
+                            "cost_price": "25.00",
+                            "stock_quantity": "100.00",
+                            "sku": "APSARA-PEN-001",
+                            "product_weight": "15",
+                            "meta_title": "Apsara Pencil - Smooth Writing",
+                            "meta_description": "Buy Apsara Pencil for school and office use.",
+                            "meta_keywords": "pencil, apsara, stationary",
+                            "attributes": "{\"color\": \"black\", \"material\": \"wood\"}",
+                            "specifications": "{\"length\": \"7 inch\", \"hardness\": \"HB\"}",
+                            "created_at": "2025-11-10T10:46:30.000000Z",
+                            "updated_at": "2025-11-10T10:46:30.000000Z",
+                            "product_images": [
+                                {
+                                    "id": 1,
+                                    "file_name": "Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg",
+                                    "url": "http://localhost:8000/storage/1/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg",
+                                    "created_at": "2025-11-10T10:46:30.000000Z"
+                                }
+                            ]
+                        }
+                    ],
+                    "links": {
+                        "first": "http://127.0.0.1:8000/api/admin/products?page=1",
+                        "last": "http://127.0.0.1:8000/api/admin/products?page=1",
+                        "prev": null,
+                        "next": null
+                    },
+                    "meta": {
+                        "current_page": 1,
+                        "from": 1,
+                        "last_page": 1,
+                        "links": [
+                            {
+                                "url": null,
+                                "label": "&laquo; Previous",
+                                "page": null,
+                                "active": false
+                            },
+                            {
+                                "url": "http://127.0.0.1:8000/api/admin/products?page=1",
+                                "label": "1",
+                                "page": 1,
+                                "active": true
+                            },
+                            {
+                                "url": null,
+                                "label": "Next &raquo;",
+                                "page": null,
+                                "active": false
+                            }
+                        ],
+                        "path": "http://127.0.0.1:8000/api/admin/products",
+                        "per_page": 10,
+                        "to": 2,
+                        "total": 2
+                    }
+                }
+  /api/admin/products/{id}:
+    post:
+      tags:
+        - Admin > Product
+      summary: update product data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                  example: '2'
+                product_unit_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: Apsara Pencil1
+                description:
+                  type: string
+                  example: High-quality graphite pencil for smooth writing.
+                selling_price:
+                  type: integer
+                  example: '50'
+                wholesale_price:
+                  type: integer
+                  example: '32'
+                cost_price:
+                  type: integer
+                  example: '25'
+                stock_quantity:
+                  type: integer
+                  example: '100'
+                sku:
+                  type: string
+                  example: APSARA-PEN-002
+                product_weight:
+                  type: integer
+                  example: '15'
+                meta_title:
+                  type: string
+                  example: Apsara Pencil - Smooth Writing
+                meta_description:
+                  type: string
+                  example: Buy Apsara Pencil for school and office use.
+                meta_keywords:
+                  type: string
+                  example: pencil, apsara, stationary
+                attributes:
+                  type: string
+                  example: '{"color":"black","material":"wood"}'
+                specifications:
+                  type: string
+                  example: '{"length":"7 inch","hardness":"HB"}'
+                product_image[]:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Product
+      summary: delete product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/products/{slug}:
+    get:
+      tags:
+        - Admin > Product
+      summary: show single product data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.3.14
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Mon, 10 Nov 2025 11:50:34 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": {
+                        "id": 2,
+                        "category_id": 2,
+                        "product_unit_id": 1,
+                        "name": "Apsara Pencil1",
+                        "slug": "apsara-pencil1",
+                        "description": "High-quality graphite pencil for smooth writing.",
+                        "selling_price": "50.00",
+                        "wholesale_price": "32.00",
+                        "cost_price": "25.00",
+                        "stock_quantity": "100.00",
+                        "sku": "APSARA-PEN-002",
+                        "product_weight": "15",
+                        "meta_title": "Apsara Pencil - Smooth Writing",
+                        "meta_description": "Buy Apsara Pencil for school and office use.",
+                        "meta_keywords": "pencil, apsara, stationary",
+                        "attributes": "{\"color\": \"black\", \"material\": \"wood\"}",
+                        "specifications": "{\"length\": \"7 inch\", \"hardness\": \"HB\"}",
+                        "created_at": "2025-11-10T11:48:17.000000Z",
+                        "updated_at": "2025-11-10T11:48:17.000000Z",
+                        "product_images": [
+                            {
+                                "id": 2,
+                                "file_name": "Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg",
+                                "url": "http://localhost:8000/storage/2/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg",
+                                "created_at": "2025-11-10T11:48:17.000000Z"
+                            }
+                        ]
+                    }
+                }
   /api/admin/site-settings:
     post:
       tags:
@@ -324,6 +680,33 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/product-units:
+    get:
+      tags:
+        - Admin > Product Units
+      summary: show all product units list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response

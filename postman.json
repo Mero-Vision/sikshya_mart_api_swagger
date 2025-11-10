@@ -371,93 +371,83 @@
 									"formdata": [
 										{
 											"key": "category_id",
-											"value": "",
+											"value": "2",
 											"type": "text"
 										},
 										{
 											"key": "product_unit_id",
-											"value": "",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "name",
-											"value": "",
+											"value": "Apsara Pencil1",
 											"type": "text"
 										},
 										{
 											"key": "description",
-											"value": "",
+											"value": "High-quality graphite pencil for smooth writing.",
 											"type": "text"
 										},
 										{
 											"key": "selling_price",
-											"value": "",
+											"value": "50",
 											"type": "text"
 										},
 										{
-											"key": "cross_price",
-											"value": "",
+											"key": "wholesale_price",
+											"value": "32",
 											"type": "text"
 										},
 										{
 											"key": "cost_price",
-											"value": "",
+											"value": "25",
 											"type": "text"
 										},
 										{
 											"key": "stock_quantity",
-											"value": "",
+											"value": "100",
 											"type": "text"
 										},
 										{
 											"key": "sku",
-											"value": "",
+											"value": "APSARA-PEN-002",
 											"type": "text"
 										},
 										{
 											"key": "product_weight",
-											"value": "",
+											"value": "15",
 											"type": "text"
 										},
 										{
 											"key": "meta_title",
-											"value": "",
+											"value": "Apsara Pencil - Smooth Writing",
 											"type": "text"
 										},
 										{
 											"key": "meta_description",
-											"value": "",
+											"value": "Buy Apsara Pencil for school and office use.",
 											"type": "text"
 										},
 										{
 											"key": "meta_keywords",
-											"value": "",
+											"value": "pencil, apsara, stationary",
 											"type": "text"
 										},
 										{
 											"key": "attributes",
-											"value": "",
+											"value": "{\"color\":\"black\",\"material\":\"wood\"}",
 											"type": "text"
 										},
 										{
 											"key": "specifications",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "is_featured",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "is_active",
-											"value": "",
+											"value": "{\"length\":\"7 inch\",\"hardness\":\"HB\"}",
 											"type": "text"
 										},
 										{
 											"key": "product_image[]",
-											"value": "",
-											"type": "text"
+											"type": "file",
+											"src": "/Users/hanciephago/Desktop/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg"
 										}
 									]
 								},
@@ -470,6 +460,408 @@
 										"api",
 										"admin",
 										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update product data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "product_unit_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Apsara Pencil1",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "High-quality graphite pencil for smooth writing.",
+											"type": "text"
+										},
+										{
+											"key": "selling_price",
+											"value": "50",
+											"type": "text"
+										},
+										{
+											"key": "wholesale_price",
+											"value": "32",
+											"type": "text"
+										},
+										{
+											"key": "cost_price",
+											"value": "25",
+											"type": "text"
+										},
+										{
+											"key": "stock_quantity",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "sku",
+											"value": "APSARA-PEN-002",
+											"type": "text"
+										},
+										{
+											"key": "product_weight",
+											"value": "15",
+											"type": "text"
+										},
+										{
+											"key": "meta_title",
+											"value": "Apsara Pencil - Smooth Writing",
+											"type": "text"
+										},
+										{
+											"key": "meta_description",
+											"value": "Buy Apsara Pencil for school and office use.",
+											"type": "text"
+										},
+										{
+											"key": "meta_keywords",
+											"value": "pencil, apsara, stationary",
+											"type": "text"
+										},
+										{
+											"key": "attributes",
+											"value": "{\"color\":\"black\",\"material\":\"wood\"}",
+											"type": "text"
+										},
+										{
+											"key": "specifications",
+											"value": "{\"length\":\"7 inch\",\"hardness\":\"HB\"}",
+											"type": "text"
+										},
+										{
+											"key": "product_image[]",
+											"type": "file",
+											"src": "/Users/hanciephago/Desktop/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/products/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"products",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all product list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/products?pagination_limit=10&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"products"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show all product list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "product_image[]",
+													"type": "file",
+													"src": "/Users/hanciephago/Desktop/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/products?pagination_limit=10&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"products"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "10"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.14"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 10 Nov 2025 11:50:16 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"category_id\": 2,\n            \"product_unit_id\": 1,\n            \"name\": \"Apsara Pencil1\",\n            \"slug\": \"apsara-pencil1\",\n            \"description\": \"High-quality graphite pencil for smooth writing.\",\n            \"selling_price\": \"50.00\",\n            \"wholesale_price\": \"32.00\",\n            \"cost_price\": \"25.00\",\n            \"stock_quantity\": \"100.00\",\n            \"sku\": \"APSARA-PEN-002\",\n            \"product_weight\": \"15\",\n            \"meta_title\": \"Apsara Pencil - Smooth Writing\",\n            \"meta_description\": \"Buy Apsara Pencil for school and office use.\",\n            \"meta_keywords\": \"pencil, apsara, stationary\",\n            \"attributes\": \"{\\\"color\\\": \\\"black\\\", \\\"material\\\": \\\"wood\\\"}\",\n            \"specifications\": \"{\\\"length\\\": \\\"7 inch\\\", \\\"hardness\\\": \\\"HB\\\"}\",\n            \"created_at\": \"2025-11-10T11:48:17.000000Z\",\n            \"updated_at\": \"2025-11-10T11:48:17.000000Z\",\n            \"product_images\": [\n                {\n                    \"id\": 2,\n                    \"file_name\": \"Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg\",\n                    \"url\": \"http://localhost:8000/storage/2/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg\",\n                    \"created_at\": \"2025-11-10T11:48:17.000000Z\"\n                }\n            ]\n        },\n        {\n            \"id\": 1,\n            \"category_id\": 2,\n            \"product_unit_id\": 1,\n            \"name\": \"Apsara Pencil\",\n            \"slug\": null,\n            \"description\": \"High-quality graphite pencil for smooth writing.\",\n            \"selling_price\": \"50.00\",\n            \"wholesale_price\": \"32.00\",\n            \"cost_price\": \"25.00\",\n            \"stock_quantity\": \"100.00\",\n            \"sku\": \"APSARA-PEN-001\",\n            \"product_weight\": \"15\",\n            \"meta_title\": \"Apsara Pencil - Smooth Writing\",\n            \"meta_description\": \"Buy Apsara Pencil for school and office use.\",\n            \"meta_keywords\": \"pencil, apsara, stationary\",\n            \"attributes\": \"{\\\"color\\\": \\\"black\\\", \\\"material\\\": \\\"wood\\\"}\",\n            \"specifications\": \"{\\\"length\\\": \\\"7 inch\\\", \\\"hardness\\\": \\\"HB\\\"}\",\n            \"created_at\": \"2025-11-10T10:46:30.000000Z\",\n            \"updated_at\": \"2025-11-10T10:46:30.000000Z\",\n            \"product_images\": [\n                {\n                    \"id\": 1,\n                    \"file_name\": \"Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg\",\n                    \"url\": \"http://localhost:8000/storage/1/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg\",\n                    \"created_at\": \"2025-11-10T10:46:30.000000Z\"\n                }\n            ]\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/api/admin/products?page=1\",\n        \"last\": \"http://127.0.0.1:8000/api/admin/products?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"page\": null,\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/api/admin/products?page=1\",\n                \"label\": \"1\",\n                \"page\": 1,\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"page\": null,\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/api/admin/products\",\n        \"per_page\": 10,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "show single product data",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/products/{slug}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"products",
+										"{slug}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show single product data",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/products/{slug}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"products",
+												"{slug}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.14"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 10 Nov 2025 11:50:34 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"category_id\": 2,\n        \"product_unit_id\": 1,\n        \"name\": \"Apsara Pencil1\",\n        \"slug\": \"apsara-pencil1\",\n        \"description\": \"High-quality graphite pencil for smooth writing.\",\n        \"selling_price\": \"50.00\",\n        \"wholesale_price\": \"32.00\",\n        \"cost_price\": \"25.00\",\n        \"stock_quantity\": \"100.00\",\n        \"sku\": \"APSARA-PEN-002\",\n        \"product_weight\": \"15\",\n        \"meta_title\": \"Apsara Pencil - Smooth Writing\",\n        \"meta_description\": \"Buy Apsara Pencil for school and office use.\",\n        \"meta_keywords\": \"pencil, apsara, stationary\",\n        \"attributes\": \"{\\\"color\\\": \\\"black\\\", \\\"material\\\": \\\"wood\\\"}\",\n        \"specifications\": \"{\\\"length\\\": \\\"7 inch\\\", \\\"hardness\\\": \\\"HB\\\"}\",\n        \"created_at\": \"2025-11-10T11:48:17.000000Z\",\n        \"updated_at\": \"2025-11-10T11:48:17.000000Z\",\n        \"product_images\": [\n            {\n                \"id\": 2,\n                \"file_name\": \"Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg\",\n                \"url\": \"http://localhost:8000/storage/2/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg\",\n                \"created_at\": \"2025-11-10T11:48:17.000000Z\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "delete product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/products/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"products",
+										"{id}"
 									]
 								}
 							},
@@ -642,6 +1034,63 @@
 										"api",
 										"admin",
 										"site-settings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Units",
+					"item": [
+						{
+							"name": "show all product units list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/product-units?pagination_limit=10&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"product-units"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
 									]
 								}
 							},
