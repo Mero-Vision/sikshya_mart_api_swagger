@@ -30,6 +30,7 @@ tags:
   - name: Admin > Auth
   - name: Admin > User
   - name: Admin > Category
+  - name: Admin > Sub Category
   - name: Admin > Product
   - name: Admin > Site Settings
   - name: Admin > Product Units
@@ -194,6 +195,47 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/sub-categories:
+    get:
+      tags:
+        - Admin > Sub Category
+      summary: show all subcategory
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/sub-categories/{slug}:
+    get:
+      tags:
+        - Admin > Sub Category
+      summary: show single sub category data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/products:
     post:
       tags:
@@ -205,7 +247,7 @@ paths:
             schema:
               type: object
               properties:
-                category_id:
+                sub_category_id:
                   type: integer
                   example: '2'
                 product_unit_id:
@@ -609,6 +651,42 @@ paths:
                         ]
                     }
                 }
+  /api/admin/pos-products:
+    get:
+      tags:
+        - Admin > Product
+      summary: pos product show all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/products-by-subcategory/2:
+    get:
+      tags:
+        - Admin > Product
+      summary: show product by sub category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/site-settings:
     post:
       tags:
@@ -627,6 +705,7 @@ paths:
                   type: string
                 logo:
                   type: string
+                  format: binary
                 fav_icon:
                   type: string
                 address:
