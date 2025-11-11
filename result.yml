@@ -34,6 +34,9 @@ tags:
   - name: Admin > Product
   - name: Admin > Site Settings
   - name: Admin > Product Units
+  - name: Admin > Inventory
+  - name: Admin > Inventory > Unit Measurement
+  - name: Admin > Inventory > Inventory Product
 paths:
   /api/admin/login:
     post:
@@ -295,6 +298,15 @@ paths:
                 product_image[]:
                   type: string
                   format: binary
+                unit_measurement_id:
+                  type: integer
+                  example: '1'
+                unit_value:
+                  type: integer
+                  example: '1'
+                low_stock_threshold:
+                  type: integer
+                  example: '10'
       security:
         - bearerAuth: []
       parameters:
@@ -782,6 +794,148 @@ paths:
           schema:
             type: integer
           example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/unit_measurements:
+    post:
+      tags:
+        - Admin > Inventory > Unit Measurement
+      summary: store unit measurement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Piece
+                symbol:
+                  type: string
+                  example: P
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Unit Measurement
+      summary: show all unit measurements
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/unit_measurements/{id}:
+    post:
+      tags:
+        - Admin > Inventory > Unit Measurement
+      summary: edit unit of measurement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Piece
+                symbol:
+                  type: string
+                  example: P
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Inventory > Unit Measurement
+      summary: delete unit of measurement
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/inventory-products:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Product
+      summary: show all inventory products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
         - name: search_keyword
           in: query
           schema:
