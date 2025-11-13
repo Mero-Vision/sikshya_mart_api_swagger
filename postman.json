@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "Website",
+			"name": "Client",
 			"item": [
 				{
 					"name": "Auth",
@@ -18,6 +18,58 @@
 							"request": {
 								"method": "GET",
 								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "show all product list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/products?pagination_limit=8&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single product list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/products/{slug}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"products",
+										"{slug}"
+									]
+								}
 							},
 							"response": []
 						}

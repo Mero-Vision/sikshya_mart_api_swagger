@@ -24,8 +24,9 @@ components:
       type: http
       scheme: bearer
 tags:
-  - name: Website
-  - name: Website > Auth
+  - name: Client
+  - name: Client > Auth
+  - name: Client > Product
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -38,6 +39,42 @@ tags:
   - name: Admin > Inventory > Unit Measurement
   - name: Admin > Inventory > Inventory Product
 paths:
+  /api/products:
+    get:
+      tags:
+        - Client > Product
+      summary: show all product list
+      parameters:
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/products/{slug}:
+    get:
+      tags:
+        - Client > Product
+      summary: show single product list
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/login:
     post:
       tags:
