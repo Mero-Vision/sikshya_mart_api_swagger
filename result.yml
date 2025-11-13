@@ -27,6 +27,8 @@ tags:
   - name: Client
   - name: Client > Auth
   - name: Client > Product
+  - name: Client > Site Settings
+  - name: Client > Category
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -70,6 +72,26 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/site-settings:
+    get:
+      tags:
+        - Client > Site Settings
+      summary: show site settings data
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/categories:
+    get:
+      tags:
+        - Client > Category
+      summary: show all category list
       responses:
         '200':
           description: Successful response
