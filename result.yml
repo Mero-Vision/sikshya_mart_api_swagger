@@ -54,19 +54,10 @@ paths:
             schema:
               type: object
               properties:
-                name:
-                  type: string
-                  example: Hello
                 email:
                   type: string
                   example: hanciephago@gmail.com
-                mobile_no:
-                  type: integer
-                  example: '545657678'
                 password:
-                  type: string
-                  example: Password@720
-                password_confirmation:
                   type: string
                   example: Password@720
       parameters:

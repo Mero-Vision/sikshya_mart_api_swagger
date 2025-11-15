@@ -28,27 +28,12 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "name",
-											"value": "Hello",
-											"type": "text"
-										},
-										{
 											"key": "email",
 											"value": "hanciephago@gmail.com",
 											"type": "text"
 										},
 										{
-											"key": "mobile_no",
-											"value": "545657678",
-											"type": "text"
-										},
-										{
 											"key": "password",
-											"value": "Password@720",
-											"type": "text"
-										},
-										{
-											"key": "password_confirmation",
 											"value": "Password@720",
 											"type": "text"
 										}
