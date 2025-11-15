@@ -37,10 +37,10 @@ tags:
   - name: Admin > Sub Category
   - name: Admin > Product
   - name: Admin > Site Settings
-  - name: Admin > Product Units
   - name: Admin > Inventory
-  - name: Admin > Inventory > Unit Measurement
-  - name: Admin > Inventory > Inventory Product
+  - name: Admin > Inventory > Product Units
+  - name: Admin > Inventory > Product Stocks
+  - name: Admin > Inventory > Warehouse
   - name: Admin > Payment Option
 paths:
   /api/login:
@@ -228,10 +228,10 @@ paths:
               properties:
                 name:
                   type: string
-                  example: iPhone
+                  example: iPhone2
                 parent_id:
                   type: integer
-                  example: '2'
+                  example: '1'
                 description:
                   type: string
                   example: hy
@@ -242,6 +242,7 @@ paths:
           in: header
           schema:
             type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -884,7 +885,7 @@ paths:
   /api/admin/product-units:
     get:
       tags:
-        - Admin > Product Units
+        - Admin > Inventory > Product Units
       summary: show all product units list
       security:
         - bearerAuth: []
@@ -908,40 +909,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/unit_measurements:
-    post:
-      tags:
-        - Admin > Inventory > Unit Measurement
-      summary: store unit measurement
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Piece
-                symbol:
-                  type: string
-                  example: P
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/admin/product-stocks:
     get:
       tags:
-        - Admin > Inventory > Unit Measurement
-      summary: show all unit measurements
+        - Admin > Inventory > Product Stocks
+      summary: show all inventory product stocks
       security:
         - bearerAuth: []
       parameters:
@@ -953,8 +925,7 @@ paths:
         - name: pagination_limit
           in: query
           schema:
-            type: integer
-          example: '8'
+            type: string
         - name: search_keyword
           in: query
           schema:
@@ -964,11 +935,36 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/unit_measurements/{id}:
+  /api/admin/warehouses:
+    get:
+      tags:
+        - Admin > Inventory > Warehouse
+      summary: show all warehouse list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
     post:
       tags:
-        - Admin > Inventory > Unit Measurement
-      summary: edit unit of measurement
+        - Admin > Inventory > Warehouse
+      summary: store warehouse data
       requestBody:
         content:
           multipart/form-data:
@@ -977,10 +973,49 @@ paths:
               properties:
                 name:
                   type: string
-                  example: Piece
-                symbol:
+                  example: Ithari Warehouse
+                address:
                   type: string
-                  example: P
+                  example: Ithari
+                phone:
+                  type: integer
+                  example: '546565'
+                is_default:
+                  type: integer
+                  example: '0'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/warehouses/{id}:
+    post:
+      tags:
+        - Admin > Inventory > Warehouse
+      summary: update warehouse data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Ithari Warehouse
+                address:
+                  type: string
+                  example: Ithari
+                phone:
+                  type: integer
+                  example: '546565'
                 _method:
                   type: string
                   example: PUT
@@ -1004,8 +1039,8 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Admin > Inventory > Unit Measurement
-      summary: delete unit of measurement
+        - Admin > Inventory > Warehouse
+      summary: delete warehouse data
       security:
         - bearerAuth: []
       parameters:
@@ -1019,32 +1054,6 @@ paths:
           schema:
             type: string
           required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/inventory-products:
-    get:
-      tags:
-        - Admin > Inventory > Inventory Product
-      summary: show all inventory products
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
       responses:
         '200':
           description: Successful response

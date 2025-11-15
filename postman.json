@@ -344,7 +344,7 @@
 								"header": [
 									{
 										"key": "Accept",
-										"value": "",
+										"value": "application/json",
 										"type": "text"
 									}
 								],
@@ -353,12 +353,12 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "iPhone",
+											"value": "iPhone2",
 											"type": "text"
 										},
 										{
 											"key": "parent_id",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										},
 										{
@@ -1375,120 +1375,13 @@
 					]
 				},
 				{
-					"name": "Product Units",
-					"item": [
-						{
-							"name": "show all product units list",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "{{url}}/api/admin/product-units?pagination_limit=10&search_keyword",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"product-units"
-									],
-									"query": [
-										{
-											"key": "pagination_limit",
-											"value": "10"
-										},
-										{
-											"key": "search_keyword",
-											"value": null
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "Inventory",
 					"item": [
 						{
-							"name": "Unit Measurement",
+							"name": "Product Units",
 							"item": [
 								{
-									"name": "store unit measurement",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "name",
-													"value": "Piece",
-													"type": "text"
-												},
-												{
-													"key": "symbol",
-													"value": "P",
-													"type": "text"
-												}
-											]
-										},
-										"url": {
-											"raw": "{{url}}/api/admin/unit_measurements",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"api",
-												"admin",
-												"unit_measurements"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "show all unit measurements",
+									"name": "show all product units list",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -1516,19 +1409,133 @@
 											"formdata": []
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/unit_measurements?pagination_limit=8&search_keyword",
+											"raw": "{{url}}/api/admin/product-units?pagination_limit=10&search_keyword",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"api",
 												"admin",
-												"unit_measurements"
+												"product-units"
 											],
 											"query": [
 												{
 													"key": "pagination_limit",
-													"value": "8"
+													"value": "10"
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Product Stocks",
+							"item": [
+								{
+									"name": "show all inventory product stocks",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/product-stocks?pagination_limit&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"product-stocks"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": null
+												},
+												{
+													"key": "search_keyword",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Warehouse",
+							"item": [
+								{
+									"name": "show all warehouse list",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/warehouses?pagination_limit&search_keyword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"warehouses"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": null
 												},
 												{
 													"key": "search_keyword",
@@ -1540,7 +1547,7 @@
 									"response": []
 								},
 								{
-									"name": "edit unit of measurement",
+									"name": "store warehouse data",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -1565,12 +1572,77 @@
 											"formdata": [
 												{
 													"key": "name",
-													"value": "Piece",
+													"value": "Ithari Warehouse",
 													"type": "text"
 												},
 												{
-													"key": "symbol",
-													"value": "P",
+													"key": "address",
+													"value": "Ithari",
+													"type": "text"
+												},
+												{
+													"key": "phone",
+													"value": "546565",
+													"type": "text"
+												},
+												{
+													"key": "is_default",
+													"value": "0",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/warehouses",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"warehouses"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update warehouse data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Ithari Warehouse",
+													"type": "text"
+												},
+												{
+													"key": "address",
+													"value": "Ithari",
+													"type": "text"
+												},
+												{
+													"key": "phone",
+													"value": "546565",
 													"type": "text"
 												},
 												{
@@ -1581,14 +1653,14 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/unit_measurements/{id}",
+											"raw": "{{url}}/api/admin/warehouses/{id}",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"api",
 												"admin",
-												"unit_measurements",
+												"warehouses",
 												"{id}"
 											]
 										}
@@ -1596,7 +1668,7 @@
 									"response": []
 								},
 								{
-									"name": "delete unit of measurement",
+									"name": "delete warehouse data",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -1618,75 +1690,39 @@
 										],
 										"body": {
 											"mode": "formdata",
-											"formdata": []
-										},
-										"url": {
-											"raw": "{{url}}/api/admin/unit_measurements/{id}",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"api",
-												"admin",
-												"unit_measurements",
-												"{id}"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
-							"name": "Inventory Product",
-							"item": [
-								{
-									"name": "show all inventory products",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
+											"formdata": [
 												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "formdata",
-											"formdata": []
-										},
-										"url": {
-											"raw": "{{url}}/api/admin/inventory-products?pagination_limit&search_keyword",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"api",
-												"admin",
-												"inventory-products"
-											],
-											"query": [
-												{
-													"key": "pagination_limit",
-													"value": null
+													"key": "name",
+													"value": "Ithari Warehouse",
+													"type": "text"
 												},
 												{
-													"key": "search_keyword",
-													"value": null
+													"key": "address",
+													"value": "Ithari",
+													"type": "text"
+												},
+												{
+													"key": "phone",
+													"value": "546565",
+													"type": "text"
+												},
+												{
+													"key": "is_default",
+													"value": "0",
+													"type": "text"
 												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/warehouses/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"warehouses",
+												"{id}"
 											]
 										}
 									},
