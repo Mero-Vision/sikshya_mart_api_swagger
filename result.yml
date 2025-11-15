@@ -29,6 +29,7 @@ tags:
   - name: Client > Product
   - name: Client > Site Settings
   - name: Client > Category
+  - name: Client > User
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -40,7 +41,45 @@ tags:
   - name: Admin > Inventory
   - name: Admin > Inventory > Unit Measurement
   - name: Admin > Inventory > Inventory Product
+  - name: Admin > Payment Option
 paths:
+  /api/login:
+    post:
+      tags:
+        - Client > Auth
+      summary: user login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hello
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                mobile_no:
+                  type: integer
+                  example: '545657678'
+                password:
+                  type: string
+                  example: Password@720
+                password_confirmation:
+                  type: string
+                  example: Password@720
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/products:
     get:
       tags:
@@ -92,6 +131,43 @@ paths:
       tags:
         - Client > Category
       summary: show all category list
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sign-up:
+    post:
+      tags:
+        - Client > User
+      summary: sign up
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hello
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                mobile_no:
+                  type: integer
+                  example: '545657678'
+                password:
+                  type: string
+                  example: Password@720
+                password_confirmation:
+                  type: string
+                  example: Password@720
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -310,62 +386,47 @@ paths:
               type: object
               properties:
                 sub_category_id:
-                  type: integer
-                  example: '2'
+                  type: string
+                  example: ' 1'
                 product_unit_id:
-                  type: integer
-                  example: '1'
+                  type: string
+                  example: ' 2'
                 name:
                   type: string
-                  example: Apsara Pencil1
+                  example: ' Organic Sunflower Oil 1L'
                 description:
                   type: string
-                  example: High-quality graphite pencil for smooth writing.
-                selling_price:
-                  type: integer
-                  example: '50'
-                wholesale_price:
-                  type: integer
-                  example: '32'
+                  example: ' 100% pure sunflower oil.'
+                sale_price:
+                  type: string
+                  example: ' 450'
                 cost_price:
-                  type: integer
-                  example: '25'
-                stock_quantity:
-                  type: integer
-                  example: '100'
+                  type: string
+                  example: ' 350'
                 sku:
                   type: string
-                  example: APSARA-PEN-002
-                product_weight:
-                  type: integer
-                  example: '15'
-                meta_title:
+                  example: ' SUN-OIL-1L'
+                unit_value:
                   type: string
-                  example: Apsara Pencil - Smooth Writing
-                meta_description:
+                  example: ' 1'
+                is_featured:
                   type: string
-                  example: Buy Apsara Pencil for school and office use.
-                meta_keywords:
+                  example: ' 1'
+                is_active:
                   type: string
-                  example: pencil, apsara, stationary
-                attributes:
+                  example: ' 1'
+                is_inventory_tracked:
                   type: string
-                  example: '{"color":"black","material":"wood"}'
+                  example: ' 1'
                 specifications:
                   type: string
-                  example: '{"length":"7 inch","hardness":"HB"}'
+                  example: ' {"brand":"PureSun","weight":"1L","type":"Refined","packaging":"Plastic Bottle"}'
+                stocks:
+                  type: string
+                  example: ' [{"warehouse_id":1,"quantity":30,"reorder_point":10},{"warehouse_id":2,"quantity":15,"reorder_point":5},{"warehouse_id":3,"quantity":0,"reorder_point":5}]'
                 product_image[]:
                   type: string
                   format: binary
-                unit_measurement_id:
-                  type: integer
-                  example: '1'
-                unit_value:
-                  type: integer
-                  example: '1'
-                low_stock_threshold:
-                  type: integer
-                  example: '10'
       security:
         - bearerAuth: []
       parameters:
@@ -545,51 +606,45 @@ paths:
             schema:
               type: object
               properties:
-                category_id:
-                  type: integer
-                  example: '2'
+                sub_category_id:
+                  type: string
+                  example: ' 1'
                 product_unit_id:
-                  type: integer
-                  example: '1'
+                  type: string
+                  example: ' 2'
                 name:
                   type: string
-                  example: Apsara Pencil1
+                  example: ' Organic Sunflower Oil 1L'
                 description:
                   type: string
-                  example: High-quality graphite pencil for smooth writing.
-                selling_price:
-                  type: integer
-                  example: '50'
-                wholesale_price:
-                  type: integer
-                  example: '32'
+                  example: ' 100% pure sunflower oil.'
+                sale_price:
+                  type: string
+                  example: ' 450'
                 cost_price:
-                  type: integer
-                  example: '25'
-                stock_quantity:
-                  type: integer
-                  example: '100'
+                  type: string
+                  example: ' 350'
                 sku:
                   type: string
-                  example: APSARA-PEN-002
-                product_weight:
-                  type: integer
-                  example: '15'
-                meta_title:
+                  example: ' SUN-OIL-1L'
+                unit_value:
                   type: string
-                  example: Apsara Pencil - Smooth Writing
-                meta_description:
+                  example: ' 1'
+                is_featured:
                   type: string
-                  example: Buy Apsara Pencil for school and office use.
-                meta_keywords:
+                  example: ' 1'
+                is_active:
                   type: string
-                  example: pencil, apsara, stationary
-                attributes:
+                  example: ' 1'
+                is_inventory_tracked:
                   type: string
-                  example: '{"color":"black","material":"wood"}'
+                  example: ' 1'
                 specifications:
                   type: string
-                  example: '{"length":"7 inch","hardness":"HB"}'
+                  example: ' {"brand":"PureSun","weight":"1L","type":"Refined","packaging":"Plastic Bottle"}'
+                stocks:
+                  type: string
+                  example: ' [{"warehouse_id":1,"quantity":30,"reorder_point":10},{"warehouse_id":2,"quantity":15,"reorder_point":5},{"warehouse_id":3,"quantity":0,"reorder_point":5}]'
                 product_image[]:
                   type: string
                   format: binary
@@ -999,6 +1054,24 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/payment-options:
+    get:
+      tags:
+        - Admin > Payment Option
+      summary: show all payment options
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response

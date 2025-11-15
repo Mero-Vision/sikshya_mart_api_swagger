@@ -14,10 +14,56 @@
 					"name": "Auth",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "user login",
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Hello",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "545657678",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password@720",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "Password@720",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
 							},
 							"response": []
 						}
@@ -114,6 +160,65 @@
 									"path": [
 										"api",
 										"categories"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "sign up",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Hello",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "545657678",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password@720",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "Password@720",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/sign-up",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sign-up"
 									]
 								}
 							},
@@ -558,77 +663,67 @@
 									"formdata": [
 										{
 											"key": "sub_category_id",
-											"value": "2",
+											"value": " 1",
 											"type": "text"
 										},
 										{
 											"key": "product_unit_id",
-											"value": "1",
+											"value": " 2",
 											"type": "text"
 										},
 										{
 											"key": "name",
-											"value": "Apsara Pencil1",
+											"value": " Organic Sunflower Oil 1L",
 											"type": "text"
 										},
 										{
 											"key": "description",
-											"value": "High-quality graphite pencil for smooth writing.",
+											"value": " 100% pure sunflower oil.",
 											"type": "text"
 										},
 										{
-											"key": "selling_price",
-											"value": "50",
-											"type": "text"
-										},
-										{
-											"key": "wholesale_price",
-											"value": "32",
+											"key": "sale_price",
+											"value": " 450",
 											"type": "text"
 										},
 										{
 											"key": "cost_price",
-											"value": "25",
-											"type": "text"
-										},
-										{
-											"key": "stock_quantity",
-											"value": "100",
+											"value": " 350",
 											"type": "text"
 										},
 										{
 											"key": "sku",
-											"value": "APSARA-PEN-002",
+											"value": " SUN-OIL-1L",
 											"type": "text"
 										},
 										{
-											"key": "product_weight",
-											"value": "15",
+											"key": "unit_value",
+											"value": " 1",
 											"type": "text"
 										},
 										{
-											"key": "meta_title",
-											"value": "Apsara Pencil - Smooth Writing",
+											"key": "is_featured",
+											"value": " 1",
 											"type": "text"
 										},
 										{
-											"key": "meta_description",
-											"value": "Buy Apsara Pencil for school and office use.",
+											"key": "is_active",
+											"value": " 1",
 											"type": "text"
 										},
 										{
-											"key": "meta_keywords",
-											"value": "pencil, apsara, stationary",
-											"type": "text"
-										},
-										{
-											"key": "attributes",
-											"value": "{\"color\":\"black\",\"material\":\"wood\"}",
+											"key": "is_inventory_tracked",
+											"value": " 1",
 											"type": "text"
 										},
 										{
 											"key": "specifications",
-											"value": "{\"length\":\"7 inch\",\"hardness\":\"HB\"}",
+											"value": " {\"brand\":\"PureSun\",\"weight\":\"1L\",\"type\":\"Refined\",\"packaging\":\"Plastic Bottle\"}",
+											"type": "text"
+										},
+										{
+											"key": "stocks",
+											"value": " [{\"warehouse_id\":1,\"quantity\":30,\"reorder_point\":10},{\"warehouse_id\":2,\"quantity\":15,\"reorder_point\":5},{\"warehouse_id\":3,\"quantity\":0,\"reorder_point\":5}]",
 											"type": "text"
 										},
 										{
@@ -637,19 +732,9 @@
 											"src": "/Users/hanciephago/Desktop/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg"
 										},
 										{
-											"key": "unit_measurement_id",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "unit_value",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "low_stock_threshold",
-											"value": "10",
-											"type": "text"
+											"key": "product_image[]",
+											"type": "file",
+											"src": "/Users/hanciephago/Desktop/Screenshot 2025-10-24 at 9.28.33 PM.png"
 										}
 									]
 								},
@@ -692,78 +777,68 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "category_id",
-											"value": "2",
+											"key": "sub_category_id",
+											"value": " 1",
 											"type": "text"
 										},
 										{
 											"key": "product_unit_id",
-											"value": "1",
+											"value": " 2",
 											"type": "text"
 										},
 										{
 											"key": "name",
-											"value": "Apsara Pencil1",
+											"value": " Organic Sunflower Oil 1L",
 											"type": "text"
 										},
 										{
 											"key": "description",
-											"value": "High-quality graphite pencil for smooth writing.",
+											"value": " 100% pure sunflower oil.",
 											"type": "text"
 										},
 										{
-											"key": "selling_price",
-											"value": "50",
-											"type": "text"
-										},
-										{
-											"key": "wholesale_price",
-											"value": "32",
+											"key": "sale_price",
+											"value": " 450",
 											"type": "text"
 										},
 										{
 											"key": "cost_price",
-											"value": "25",
-											"type": "text"
-										},
-										{
-											"key": "stock_quantity",
-											"value": "100",
+											"value": " 350",
 											"type": "text"
 										},
 										{
 											"key": "sku",
-											"value": "APSARA-PEN-002",
+											"value": " SUN-OIL-1L",
 											"type": "text"
 										},
 										{
-											"key": "product_weight",
-											"value": "15",
+											"key": "unit_value",
+											"value": " 1",
 											"type": "text"
 										},
 										{
-											"key": "meta_title",
-											"value": "Apsara Pencil - Smooth Writing",
+											"key": "is_featured",
+											"value": " 1",
 											"type": "text"
 										},
 										{
-											"key": "meta_description",
-											"value": "Buy Apsara Pencil for school and office use.",
+											"key": "is_active",
+											"value": " 1",
 											"type": "text"
 										},
 										{
-											"key": "meta_keywords",
-											"value": "pencil, apsara, stationary",
-											"type": "text"
-										},
-										{
-											"key": "attributes",
-											"value": "{\"color\":\"black\",\"material\":\"wood\"}",
+											"key": "is_inventory_tracked",
+											"value": " 1",
 											"type": "text"
 										},
 										{
 											"key": "specifications",
-											"value": "{\"length\":\"7 inch\",\"hardness\":\"HB\"}",
+											"value": " {\"brand\":\"PureSun\",\"weight\":\"1L\",\"type\":\"Refined\",\"packaging\":\"Plastic Bottle\"}",
+											"type": "text"
+										},
+										{
+											"key": "stocks",
+											"value": " [{\"warehouse_id\":1,\"quantity\":30,\"reorder_point\":10},{\"warehouse_id\":2,\"quantity\":15,\"reorder_point\":5},{\"warehouse_id\":3,\"quantity\":0,\"reorder_point\":5}]",
 											"type": "text"
 										},
 										{
@@ -1633,6 +1708,79 @@
 									"response": []
 								}
 							]
+						}
+					]
+				},
+				{
+					"name": "Payment Option",
+					"item": [
+						{
+							"name": "show all payment options",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Hello",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "545657678",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password@720",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "Password@720",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/payment-options",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"payment-options"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
