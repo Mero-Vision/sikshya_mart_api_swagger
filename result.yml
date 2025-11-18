@@ -23,6 +23,9 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
+    noauthAuth:
+      type: http
+      scheme: noauth
 tags:
   - name: Client
   - name: Client > Auth
@@ -30,6 +33,8 @@ tags:
   - name: Client > Site Settings
   - name: Client > Category
   - name: Client > User
+  - name: Client > Contact Us
+  - name: Client > Cart
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -42,6 +47,7 @@ tags:
   - name: Admin > Inventory > Product Stocks
   - name: Admin > Inventory > Warehouse
   - name: Admin > Payment Option
+  - name: Admin > Contact Us
 paths:
   /api/login:
     post:
@@ -270,6 +276,145 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/contact-us:
+    post:
+      tags:
+        - Client > Contact Us
+      summary: store contact us data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                mobile_no:
+                  type: string
+                subject:
+                  type: string
+                message:
+                  type: string
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/carts:
+    post:
+      tags:
+        - Client > Cart
+      summary: store cart data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  example: '1'
+                quantity:
+                  type: integer
+                  example: '2'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Client > Cart
+      summary: show cart data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/carts/{id}:
+    delete:
+      tags:
+        - Client > Cart
+      summary: destroy cart
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/carts/quantity-update/{id}:
+    post:
+      tags:
+        - Client > Cart
+      summary: update cart quantity
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  example: '2'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -526,7 +671,7 @@ paths:
                   example: ' {"brand":"PureSun","weight":"1L","type":"Refined","packaging":"Plastic Bottle"}'
                 stocks:
                   type: string
-                  example: ' [{"warehouse_id":1,"quantity":30,"reorder_point":10},{"warehouse_id":2,"quantity":15,"reorder_point":5},{"warehouse_id":3,"quantity":0,"reorder_point":5}]'
+                  example: ' [{"warehouse_id":1,"quantity":30,"reorder_point":10}]'
                 product_image[]:
                   type: string
                   format: binary
@@ -1183,6 +1328,47 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/contact-us:
+    get:
+      tags:
+        - Admin > Contact Us
+      summary: show all contact us
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/contact-us/{id}:
+    delete:
+      tags:
+        - Admin > Contact Us
+      summary: delete contact us
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
