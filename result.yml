@@ -35,6 +35,7 @@ tags:
   - name: Client > User
   - name: Client > Contact Us
   - name: Client > Cart
+  - name: Client > Faq
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -48,6 +49,9 @@ tags:
   - name: Admin > Inventory > Warehouse
   - name: Admin > Payment Option
   - name: Admin > Contact Us
+  - name: Admin > Faq
+  - name: Admin > Customer
+  - name: Admin > POS Order
 paths:
   /api/login:
     post:
@@ -415,6 +419,24 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/faqs:
+    get:
+      tags:
+        - Client > Faq
+      summary: show all faqs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -1374,3 +1396,342 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/faqs:
+    post:
+      tags:
+        - Admin > Faq
+      summary: store faq
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  example: hy
+                answer:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Faq
+      summary: show all faqs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/faqs/{id}:
+    post:
+      tags:
+        - Admin > Faq
+      summary: update faq store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  example: hy
+                answer:
+                  type: string
+                  example: hy
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Faq
+      summary: delete faq
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customers:
+    get:
+      tags:
+        - Admin > Customer
+      summary: show all customers
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customers/2:
+    get:
+      tags:
+        - Admin > Customer
+      summary: show customer data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/pos-orders:
+    post:
+      tags:
+        - Admin > POS Order
+      summary: store order data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                user_id: 1
+                customer_id: 1
+                payment_option_id: 2
+                tax: 15.5
+                discount_amount: 20
+                discount_type: fixed
+                delivery_charge: 50
+                tendered_amount: 500
+                channel: pos
+                order_items:
+                  - product_id: 1
+                    quantity: 2
+                    unit_price: 120.5
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > POS Order
+      summary: show all pos orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: payment_option_id
+          in: query
+          schema:
+            type: integer
+          example: '2'
+        - name: date_from
+          in: query
+          schema:
+            type: string
+          example: '2025-11-26'
+        - name: date_to
+          in: query
+          schema:
+            type: string
+          example: '2025-11-26'
+        - name: order_number
+          in: query
+          schema:
+            type: string
+          example: ORD2025112600003 (search box)
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.3.14
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Wed, 26 Nov 2025 10:05:16 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 2,
+                            "order_number": "ORD2025112600003",
+                            "user_id": null,
+                            "customer_id": 1,
+                            "payment_option_id": 2,
+                            "subtotal": 241,
+                            "tax": 15.5,
+                            "discount_amount": 20,
+                            "discount_type": "fixed",
+                            "delivery_charge": 50,
+                            "total_amount": 286.5,
+                            "tendered_amount": 500,
+                            "change_amount": 213.5,
+                            "due_amount": 0,
+                            "is_credit": false,
+                            "is_voided": false,
+                            "void_reason": null,
+                            "voided_by_user_id": null,
+                            "status": "paid",
+                            "payment_status": "paid",
+                            "channel": "pos",
+                            "order_items": [
+                                {
+                                    "id": 4,
+                                    "product_id": 1,
+                                    "quantity": 2,
+                                    "unit_price": 120.5,
+                                    "total_price": 241,
+                                    "created_at": "2025-11-26 10:00:06",
+                                    "updated_at": "2025-11-26 10:00:06"
+                                }
+                            ],
+                            "created_at": "2025-11-26 10:00:06",
+                            "updated_at": "2025-11-26 10:00:06",
+                            "deleted_at": null
+                        }
+                    ],
+                    "links": {
+                        "first": "http://127.0.0.1:8000/api/admin/pos-orders?page=1",
+                        "last": "http://127.0.0.1:8000/api/admin/pos-orders?page=1",
+                        "prev": null,
+                        "next": null
+                    },
+                    "meta": {
+                        "current_page": 1,
+                        "from": 1,
+                        "last_page": 1,
+                        "links": [
+                            {
+                                "url": null,
+                                "label": "&laquo; Previous",
+                                "page": null,
+                                "active": false
+                            },
+                            {
+                                "url": "http://127.0.0.1:8000/api/admin/pos-orders?page=1",
+                                "label": "1",
+                                "page": 1,
+                                "active": true
+                            },
+                            {
+                                "url": null,
+                                "label": "Next &raquo;",
+                                "page": null,
+                                "active": false
+                            }
+                        ],
+                        "path": "http://127.0.0.1:8000/api/admin/pos-orders",
+                        "per_page": 8,
+                        "to": 1,
+                        "total": 1
+                    }
+                }

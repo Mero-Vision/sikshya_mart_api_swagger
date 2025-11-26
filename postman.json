@@ -676,6 +676,52 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Faq",
+					"item": [
+						{
+							"name": "show all faqs",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/faqs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"faqs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -2355,6 +2401,484 @@
 								}
 							},
 							"response": []
+						}
+					]
+				},
+				{
+					"name": "Faq",
+					"item": [
+						{
+							"name": "store faq",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "question",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "answer",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/faqs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"faqs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update faq store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "question",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "answer",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/faqs/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"faqs",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all faqs",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/faqs?pagination_limit=10&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"faqs"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete faq",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/faqs/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"faqs",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customer",
+					"item": [
+						{
+							"name": "show all customers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/customers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show customer data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/customers/2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"customers",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POS Order",
+					"item": [
+						{
+							"name": "store order data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": 1,\n    \"customer_id\": 1,\n    \"payment_option_id\": 2,\n    \"tax\": 15.50,\n    \"discount_amount\": 20,\n    \"discount_type\": \"fixed\",\n    \"delivery_charge\": 50,\n    \"tendered_amount\": 500,\n    \"channel\": \"pos\",\n    \"order_items\": [\n        {\n            \"product_id\": 1,\n            \"quantity\": 2,\n            \"unit_price\": 120.50\n        }\n    ]\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/pos-orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"pos-orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all pos orders",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/pos-orders?customer_id=1&payment_option_id=2&date_from=2025-11-26&date_to=2025-11-26&order_number=ORD2025112600003 (search box)",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"pos-orders"
+									],
+									"query": [
+										{
+											"key": "customer_id",
+											"value": "1"
+										},
+										{
+											"key": "payment_option_id",
+											"value": "2"
+										},
+										{
+											"key": "date_from",
+											"value": "2025-11-26"
+										},
+										{
+											"key": "date_to",
+											"value": "2025-11-26"
+										},
+										{
+											"key": "order_number",
+											"value": "ORD2025112600003 (search box)"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show all pos orders",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/pos-orders?customer_id=1&payment_option_id=2&date_from=2025-11-26&date_to=2025-11-26&order_number=ORD2025112600003 (search box)",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"pos-orders"
+											],
+											"query": [
+												{
+													"key": "customer_id",
+													"value": "1"
+												},
+												{
+													"key": "payment_option_id",
+													"value": "2"
+												},
+												{
+													"key": "date_from",
+													"value": "2025-11-26"
+												},
+												{
+													"key": "date_to",
+													"value": "2025-11-26"
+												},
+												{
+													"key": "order_number",
+													"value": "ORD2025112600003 (search box)"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.14"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 Nov 2025 10:05:16 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"order_number\": \"ORD2025112600003\",\n            \"user_id\": null,\n            \"customer_id\": 1,\n            \"payment_option_id\": 2,\n            \"subtotal\": 241,\n            \"tax\": 15.5,\n            \"discount_amount\": 20,\n            \"discount_type\": \"fixed\",\n            \"delivery_charge\": 50,\n            \"total_amount\": 286.5,\n            \"tendered_amount\": 500,\n            \"change_amount\": 213.5,\n            \"due_amount\": 0,\n            \"is_credit\": false,\n            \"is_voided\": false,\n            \"void_reason\": null,\n            \"voided_by_user_id\": null,\n            \"status\": \"paid\",\n            \"payment_status\": \"paid\",\n            \"channel\": \"pos\",\n            \"order_items\": [\n                {\n                    \"id\": 4,\n                    \"product_id\": 1,\n                    \"quantity\": 2,\n                    \"unit_price\": 120.5,\n                    \"total_price\": 241,\n                    \"created_at\": \"2025-11-26 10:00:06\",\n                    \"updated_at\": \"2025-11-26 10:00:06\"\n                }\n            ],\n            \"created_at\": \"2025-11-26 10:00:06\",\n            \"updated_at\": \"2025-11-26 10:00:06\",\n            \"deleted_at\": null\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/api/admin/pos-orders?page=1\",\n        \"last\": \"http://127.0.0.1:8000/api/admin/pos-orders?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"page\": null,\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/api/admin/pos-orders?page=1\",\n                \"label\": \"1\",\n                \"page\": 1,\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"page\": null,\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/api/admin/pos-orders\",\n        \"per_page\": 8,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+								}
+							]
 						}
 					]
 				}
