@@ -51,6 +51,7 @@ tags:
   - name: Admin > Contact Us
   - name: Admin > Faq
   - name: Admin > Customer
+  - name: Admin > POS Customers
   - name: Admin > POS Order
 paths:
   /api/login:
@@ -1548,6 +1549,148 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/pos-customers:
+    post:
+      tags:
+        - Admin > POS Customers
+      summary: store customer data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Harry
+                email:
+                  type: string
+                contact_no:
+                  type: string
+                address:
+                  type: string
+                opening_balance:
+                  type: integer
+                  example: '2000'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > POS Customers
+      summary: show all customers
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/pos-customers/{id:
+    get:
+      tags:
+        - Admin > POS Customers
+      summary: show single customer data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/pos-customers/pay-due/{customer_id}:
+    post:
+      tags:
+        - Admin > POS Customers
+      summary: customer due payment
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                paid_amount:
+                  type: integer
+                  example: '20'
+                payment_option_id:
+                  type: integer
+                  example: '1'
+                note:
+                  type: string
+                  example: Partial due cleared in cash
+                discount:
+                  type: string
+                discount_type:
+                  type: string
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/pos-customers-total-dues:
+    get:
+      tags:
+        - Admin > POS Customers
+      summary: show customer total dues
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/pos-orders:
     post:
       tags:
@@ -1735,3 +1878,26 @@ paths:
                         "total": 1
                     }
                 }
+  /api/admin/pos-orders/{id}:
+    get:
+      tags:
+        - Admin > POS Order
+      summary: show single order data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
