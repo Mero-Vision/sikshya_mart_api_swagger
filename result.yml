@@ -36,6 +36,7 @@ tags:
   - name: Client > Contact Us
   - name: Client > Cart
   - name: Client > Faq
+  - name: Client > Delivery Charge
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -53,6 +54,9 @@ tags:
   - name: Admin > Customer
   - name: Admin > POS Customers
   - name: Admin > POS Order
+  - name: Admin > Province
+  - name: Admin > City
+  - name: Admin > City Delivery Rate
 paths:
   /api/login:
     post:
@@ -443,6 +447,36 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/delivery-charge/calculate:
+    post:
+      tags:
+        - Client > Delivery Charge
+      summary: calculate delivery charge
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                city_id: 1
+                order_items:
+                  - product_id: 1
+                    quantity: 1
+                  - product_id: 2
+                    quantity: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/login:
     post:
       tags:
@@ -698,6 +732,9 @@ paths:
                 product_image[]:
                   type: string
                   format: binary
+                weight_kg:
+                  type: number
+                  example: '1.2'
       security:
         - bearerAuth: []
       parameters:
@@ -1896,6 +1933,259 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/province:
+    post:
+      tags:
+        - Admin > Province
+      summary: store province data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Bagmati Province
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Province
+      summary: show all provinces
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/province/{id}:
+    post:
+      tags:
+        - Admin > Province
+      summary: update province
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Bagmati Province
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Province
+      summary: delete province
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/city:
+    post:
+      tags:
+        - Admin > City
+      summary: store city data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Birtamode
+                province_id:
+                  type: integer
+                  example: '2'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > City
+      summary: show all city
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/city/{id}:
+    post:
+      tags:
+        - Admin > City
+      summary: update city data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Birtamode
+                province_id:
+                  type: integer
+                  example: '2'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > City
+      summary: delete city
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/city-delivery-rates:
+    post:
+      tags:
+        - Admin > City Delivery Rate
+      summary: store city delvery rate
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                city_id:
+                  type: integer
+                  example: '1'
+                min_weight_kg:
+                  type: integer
+                  example: '50'
+                max_weight_kg:
+                  type: integer
+                  example: '200'
+                rate:
+                  type: integer
+                  example: '200'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
