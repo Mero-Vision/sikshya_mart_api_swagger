@@ -38,6 +38,9 @@ tags:
   - name: Client > Faq
   - name: Client > Delivery Charge
   - name: Client > Delivery Address
+  - name: Client > Order
+  - name: Client > Province
+  - name: Client > City
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -633,6 +636,82 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/orders:
+    post:
+      tags:
+        - Client > Order
+      summary: store order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                payment_option_id: 1
+                tax: 50
+                discount_amount: 20
+                delivery_charge: 100
+                order_items:
+                  - product_id: 1
+                    quantity: 2
+                    unit_price: 500
+                  - product_id: 2
+                    quantity: 1
+                    unit_price: 1200
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/provinces:
+    get:
+      tags:
+        - Client > Province
+      summary: show all provinces
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/cities:
+    get:
+      tags:
+        - Client > City
+      summary: show all cities
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: province_id
+          in: query
+          schema:
+            type: integer
+          example: '2'
       responses:
         '200':
           description: Successful response
