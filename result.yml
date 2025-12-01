@@ -37,6 +37,7 @@ tags:
   - name: Client > Cart
   - name: Client > Faq
   - name: Client > Delivery Charge
+  - name: Client > Delivery Address
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -472,6 +473,166 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/delivery-addresses:
+    post:
+      tags:
+        - Client > Delivery Address
+      summary: store delivery address
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                province_id:
+                  type: integer
+                  example: '2'
+                city_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: Bardan Bhattarai
+                phone_number:
+                  type: integer
+                  example: '45565445'
+                address:
+                  type: string
+                  example: Bhadrapur
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Client > Delivery Address
+      summary: show all delivery addresses
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/delivery-addresses/{id}:
+    post:
+      tags:
+        - Client > Delivery Address
+      summary: update delivery address
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                province_id:
+                  type: integer
+                  example: '2'
+                city_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: Bardan Bhattarai
+                phone_number:
+                  type: integer
+                  example: '45565445'
+                address:
+                  type: string
+                  example: Bhadrapur
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Client > Delivery Address
+      summary: show single delivery address
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/delivery-addresses/status-update/{id}:
+    post:
+      tags:
+        - Client > Delivery Address
+      summary: update status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: boolean
+                  example: 'false'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response

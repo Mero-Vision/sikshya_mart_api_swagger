@@ -771,6 +771,265 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Delivery Address",
+					"item": [
+						{
+							"name": "store delivery address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "province_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "city_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Bardan Bhattarai",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "45565445",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Bhadrapur",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/delivery-addresses",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"delivery-addresses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update delivery address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "province_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "city_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Bardan Bhattarai",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "45565445",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Bhadrapur",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/delivery-addresses/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"delivery-addresses",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all delivery addresses",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/delivery-addresses",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"delivery-addresses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/delivery-addresses/status-update/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"delivery-addresses",
+										"status-update",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single delivery address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/delivery-addresses/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"delivery-addresses",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
