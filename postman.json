@@ -1162,6 +1162,95 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Fonepay dynamic qr",
+					"item": [
+						{
+							"name": "download fonepay dynamic qr",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "order_id",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/fonepay/third-party-dynamic-qr-download",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"fonepay",
+										"third-party-dynamic-qr-download"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payment Option",
+					"item": [
+						{
+							"name": "show all payment option list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/payment-options",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment-options"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -1269,6 +1358,41 @@
 										"admin",
 										"user",
 										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"users"
 									]
 								}
 							},
@@ -2759,6 +2883,82 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "update payment option",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "secret_key",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "public_key",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "merchant_code",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/payment-options/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"payment-options",
+										"{id}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3112,7 +3312,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/admin/customers/2",
+									"raw": "{{url}}/api/admin/customers/{id}",
 									"host": [
 										"{{url}}"
 									],
@@ -3120,7 +3320,79 @@
 										"api",
 										"admin",
 										"customers",
-										"2"
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show customer cart data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/customer-carts/{customer_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"customer-carts",
+										"{customer_id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show customer all delivery addresses",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/customer-delivery-addresses/{customer_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"customer-delivery-addresses",
+										"{customer_id}"
 									]
 								}
 							},
@@ -3263,7 +3535,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/admin/pos-customers/{id",
+									"raw": "{{url}}/api/admin/pos-customers/{id}",
 									"host": [
 										"{{url}}"
 									],
@@ -3271,7 +3543,7 @@
 										"api",
 										"admin",
 										"pos-customers",
-										"{id"
+										"{id}"
 									]
 								}
 							},
@@ -3462,7 +3734,7 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{url}}/api/admin/pos-orders?customer_id=1&payment_option_id=2&date_from=2025-11-26&date_to=2025-11-26&order_number=ORD2025112600003 (search box)",
+									"raw": "{{url}}/api/admin/pos-orders?customer_id=1&payment_option_id=2&date_from=2025-11-26&date_to=2025-12-01&order_number=",
 									"host": [
 										"{{url}}"
 									],
@@ -3486,11 +3758,11 @@
 										},
 										{
 											"key": "date_to",
-											"value": "2025-11-26"
+											"value": "2025-12-01"
 										},
 										{
 											"key": "order_number",
-											"value": "ORD2025112600003 (search box)"
+											"value": ""
 										}
 									]
 								}

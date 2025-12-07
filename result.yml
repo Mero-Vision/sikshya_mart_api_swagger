@@ -41,6 +41,8 @@ tags:
   - name: Client > Order
   - name: Client > Province
   - name: Client > City
+  - name: Client > Fonepay dynamic qr
+  - name: Client > Payment Option
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -717,6 +719,51 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/fonepay/third-party-dynamic-qr-download:
+    post:
+      tags:
+        - Client > Fonepay dynamic qr
+      summary: download fonepay dynamic qr
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+                  example: '5'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/payment-options:
+    get:
+      tags:
+        - Client > Payment Option
+      summary: show all payment option list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/login:
     post:
       tags:
@@ -763,6 +810,24 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/users:
+    get:
+      tags:
+        - Admin > User
+      summary: show all users
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -1633,6 +1698,50 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/payment-options/{id}:
+    post:
+      tags:
+        - Admin > Payment Option
+      summary: update payment option
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                secret_key:
+                  type: string
+                public_key:
+                  type: string
+                merchant_code:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/contact-us:
     get:
       tags:
@@ -1808,7 +1917,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/customers/2:
+  /api/admin/customers/{id}:
     get:
       tags:
         - Admin > Customer
@@ -1821,6 +1930,57 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customer-carts/{customer_id}:
+    get:
+      tags:
+        - Admin > Customer
+      summary: show customer cart data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customer-delivery-addresses/{customer_id}:
+    get:
+      tags:
+        - Admin > Customer
+      summary: show customer all delivery addresses
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -1887,7 +2047,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/pos-customers/{id:
+  /api/admin/pos-customers/{id}:
     get:
       tags:
         - Admin > POS Customers
@@ -1900,6 +2060,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -2036,12 +2201,11 @@ paths:
           in: query
           schema:
             type: string
-          example: '2025-11-26'
+          example: '2025-12-01'
         - name: order_number
           in: query
           schema:
             type: string
-          example: ORD2025112600003 (search box)
       responses:
         '200':
           description: OK
