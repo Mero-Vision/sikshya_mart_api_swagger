@@ -78,7 +78,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/products?pagination_limit=8&search_keyword",
+									"raw": "{{url}}/api/products?pagination_limit=8&search_keyword&sub_category_id=1",
 									"host": [
 										"{{url}}"
 									],
@@ -94,6 +94,10 @@
 										{
 											"key": "search_keyword",
 											"value": null
+										},
+										{
+											"key": "sub_category_id",
+											"value": "1"
 										}
 									]
 								}
@@ -160,6 +164,24 @@
 									"path": [
 										"api",
 										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all subcategories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/sub-categories",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sub-categories"
 									]
 								}
 							},
@@ -1072,6 +1094,134 @@
 									"path": [
 										"api",
 										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "show all orders",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/orders",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"orders"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.14"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 08 Dec 2025 13:35:31 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 5,\n            \"order_number\": \"ORD2025120100002\",\n            \"user_id\": 2,\n            \"payment_option_id\": 1,\n            \"subtotal\": 2200,\n            \"tax\": 50,\n            \"delivery_charge\": 100,\n            \"total_amount\": 2330,\n            \"status\": \"pending\",\n            \"payment_status\": \"pending\",\n            \"channel\": \"online\",\n            \"order_items\": [\n                {\n                    \"id\": 8,\n                    \"product_id\": 1,\n                    \"quantity\": 2,\n                    \"unit_price\": 500,\n                    \"total_price\": 1000,\n                    \"created_at\": \"2025-12-01 12:52:18\",\n                    \"updated_at\": \"2025-12-01 12:52:18\",\n                    \"product\": {\n                        \"id\": 1,\n                        \"sub_category_id\": 1,\n                        \"product_unit_id\": 2,\n                        \"name\": \"Organic Sunflower Oil 1L\",\n                        \"slug\": \"organic-sunflower-oil-1l\",\n                        \"description\": \"100% pure sunflower oil.\",\n                        \"sale_price\": \"450.00\",\n                        \"cost_price\": \"350.00\",\n                        \"sku\": \"SUN-OIL-1L\",\n                        \"weight_kg\": \"20.00\",\n                        \"unit_value\": \"1.000\",\n                        \"specifications\": \"{\\\"type\\\": \\\"Refined\\\", \\\"brand\\\": \\\"PureSun\\\", \\\"weight\\\": \\\"1L\\\", \\\"packaging\\\": \\\"Plastic Bottle\\\"}\",\n                        \"is_featured\": true,\n                        \"is_active\": true,\n                        \"is_inventory_tracked\": true,\n                        \"created_at\": \"2025-11-18T13:33:30.000000Z\",\n                        \"updated_at\": \"2025-11-18T13:33:30.000000Z\",\n                        \"product_images\": [\n                            {\n                                \"id\": 1,\n                                \"file_name\": \"Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg\",\n                                \"url\": \"http://localhost:8000/storage/1/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg\",\n                                \"created_at\": \"2025-11-18T13:33:30.000000Z\"\n                            },\n                            {\n                                \"id\": 2,\n                                \"file_name\": \"Screenshot-2025-10-24-at-9.28.33\\u202fPM.png\",\n                                \"url\": \"http://localhost:8000/storage/2/Screenshot-2025-10-24-at-9.28.33\\u202fPM.png\",\n                                \"created_at\": \"2025-11-18T13:33:30.000000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"id\": 9,\n                    \"product_id\": 2,\n                    \"quantity\": 1,\n                    \"unit_price\": 1200,\n                    \"total_price\": 1200,\n                    \"created_at\": \"2025-12-01 12:52:18\",\n                    \"updated_at\": \"2025-12-01 12:52:18\",\n                    \"product\": {\n                        \"id\": 2,\n                        \"sub_category_id\": 1,\n                        \"product_unit_id\": 2,\n                        \"name\": \"Organic Sunflower Oil 1L\",\n                        \"slug\": \"organic-sunflower-oil-1l\",\n                        \"description\": \"100% pure sunflower oil.\",\n                        \"sale_price\": \"450.00\",\n                        \"cost_price\": \"350.00\",\n                        \"sku\": \"SUN-OIL-1L\",\n                        \"weight_kg\": \"10.00\",\n                        \"unit_value\": \"1.000\",\n                        \"specifications\": \"{\\\"type\\\": \\\"Refined\\\", \\\"brand\\\": \\\"PureSun\\\", \\\"weight\\\": \\\"1L\\\", \\\"packaging\\\": \\\"Plastic Bottle\\\"}\",\n                        \"is_featured\": true,\n                        \"is_active\": true,\n                        \"is_inventory_tracked\": true,\n                        \"created_at\": \"2025-11-18T13:33:30.000000Z\",\n                        \"updated_at\": \"2025-11-18T13:33:30.000000Z\",\n                        \"product_images\": []\n                    }\n                }\n            ],\n            \"payment_option\": {\n                \"id\": 1,\n                \"name\": \"Cash\",\n                \"slug\": \"Cash\"\n            },\n            \"created_at\": \"2025-12-01 12:52:18\",\n            \"updated_at\": \"2025-12-01 12:52:18\",\n            \"deleted_at\": null\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/api/orders?page=1\",\n        \"last\": \"http://127.0.0.1:8000/api/orders?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"page\": null,\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/api/orders?page=1\",\n                \"label\": \"1\",\n                \"page\": 1,\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"page\": null,\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/api/orders\",\n        \"per_page\": 8,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "show single order data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/orders/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"{id}"
 									]
 								}
 							},

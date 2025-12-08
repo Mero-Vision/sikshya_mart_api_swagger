@@ -107,6 +107,11 @@ paths:
           in: query
           schema:
             type: string
+        - name: sub_category_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -143,6 +148,16 @@ paths:
       tags:
         - Client > Category
       summary: show all category list
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sub-categories:
+    get:
+      tags:
+        - Client > Category
+      summary: show all subcategories
       responses:
         '200':
           description: Successful response
@@ -673,6 +688,211 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Client > Order
+      summary: show all orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.3.14
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Mon, 08 Dec 2025 13:35:31 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "id": 5,
+                            "order_number": "ORD2025120100002",
+                            "user_id": 2,
+                            "payment_option_id": 1,
+                            "subtotal": 2200,
+                            "tax": 50,
+                            "delivery_charge": 100,
+                            "total_amount": 2330,
+                            "status": "pending",
+                            "payment_status": "pending",
+                            "channel": "online",
+                            "order_items": [
+                                {
+                                    "id": 8,
+                                    "product_id": 1,
+                                    "quantity": 2,
+                                    "unit_price": 500,
+                                    "total_price": 1000,
+                                    "created_at": "2025-12-01 12:52:18",
+                                    "updated_at": "2025-12-01 12:52:18",
+                                    "product": {
+                                        "id": 1,
+                                        "sub_category_id": 1,
+                                        "product_unit_id": 2,
+                                        "name": "Organic Sunflower Oil 1L",
+                                        "slug": "organic-sunflower-oil-1l",
+                                        "description": "100% pure sunflower oil.",
+                                        "sale_price": "450.00",
+                                        "cost_price": "350.00",
+                                        "sku": "SUN-OIL-1L",
+                                        "weight_kg": "20.00",
+                                        "unit_value": "1.000",
+                                        "specifications": "{\"type\": \"Refined\", \"brand\": \"PureSun\", \"weight\": \"1L\", \"packaging\": \"Plastic Bottle\"}",
+                                        "is_featured": true,
+                                        "is_active": true,
+                                        "is_inventory_tracked": true,
+                                        "created_at": "2025-11-18T13:33:30.000000Z",
+                                        "updated_at": "2025-11-18T13:33:30.000000Z",
+                                        "product_images": [
+                                            {
+                                                "id": 1,
+                                                "file_name": "Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg",
+                                                "url": "http://localhost:8000/storage/1/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg",
+                                                "created_at": "2025-11-18T13:33:30.000000Z"
+                                            },
+                                            {
+                                                "id": 2,
+                                                "file_name": "Screenshot-2025-10-24-at-9.28.33\u202fPM.png",
+                                                "url": "http://localhost:8000/storage/2/Screenshot-2025-10-24-at-9.28.33\u202fPM.png",
+                                                "created_at": "2025-11-18T13:33:30.000000Z"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "id": 9,
+                                    "product_id": 2,
+                                    "quantity": 1,
+                                    "unit_price": 1200,
+                                    "total_price": 1200,
+                                    "created_at": "2025-12-01 12:52:18",
+                                    "updated_at": "2025-12-01 12:52:18",
+                                    "product": {
+                                        "id": 2,
+                                        "sub_category_id": 1,
+                                        "product_unit_id": 2,
+                                        "name": "Organic Sunflower Oil 1L",
+                                        "slug": "organic-sunflower-oil-1l",
+                                        "description": "100% pure sunflower oil.",
+                                        "sale_price": "450.00",
+                                        "cost_price": "350.00",
+                                        "sku": "SUN-OIL-1L",
+                                        "weight_kg": "10.00",
+                                        "unit_value": "1.000",
+                                        "specifications": "{\"type\": \"Refined\", \"brand\": \"PureSun\", \"weight\": \"1L\", \"packaging\": \"Plastic Bottle\"}",
+                                        "is_featured": true,
+                                        "is_active": true,
+                                        "is_inventory_tracked": true,
+                                        "created_at": "2025-11-18T13:33:30.000000Z",
+                                        "updated_at": "2025-11-18T13:33:30.000000Z",
+                                        "product_images": []
+                                    }
+                                }
+                            ],
+                            "payment_option": {
+                                "id": 1,
+                                "name": "Cash",
+                                "slug": "Cash"
+                            },
+                            "created_at": "2025-12-01 12:52:18",
+                            "updated_at": "2025-12-01 12:52:18",
+                            "deleted_at": null
+                        }
+                    ],
+                    "links": {
+                        "first": "http://127.0.0.1:8000/api/orders?page=1",
+                        "last": "http://127.0.0.1:8000/api/orders?page=1",
+                        "prev": null,
+                        "next": null
+                    },
+                    "meta": {
+                        "current_page": 1,
+                        "from": 1,
+                        "last_page": 1,
+                        "links": [
+                            {
+                                "url": null,
+                                "label": "&laquo; Previous",
+                                "page": null,
+                                "active": false
+                            },
+                            {
+                                "url": "http://127.0.0.1:8000/api/orders?page=1",
+                                "label": "1",
+                                "page": 1,
+                                "active": true
+                            },
+                            {
+                                "url": null,
+                                "label": "Next &raquo;",
+                                "page": null,
+                                "active": false
+                            }
+                        ],
+                        "path": "http://127.0.0.1:8000/api/orders",
+                        "per_page": 8,
+                        "to": 1,
+                        "total": 1
+                    }
+                }
+  /api/orders/{id}:
+    get:
+      tags:
+        - Client > Order
+      summary: show single order data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
