@@ -60,6 +60,7 @@ tags:
   - name: Admin > Customer
   - name: Admin > POS Customers
   - name: Admin > POS Order
+  - name: Admin > Order
   - name: Admin > Province
   - name: Admin > City
   - name: Admin > City Delivery Rate
@@ -953,6 +954,36 @@ paths:
                 order_id:
                   type: integer
                   example: '5'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/fonepay/order-payments/qr/status:
+    post:
+      tags:
+        - Client > Fonepay dynamic qr
+      summary: check order fonepay payment qr status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+                  example: '5'
+                prn:
+                  type: string
+                  example: 76855fde-ec06-44e6-828f-49ff8b7d5b71
       security:
         - bearerAuth: []
       parameters:
@@ -1931,16 +1962,20 @@ paths:
               properties:
                 name:
                   type: string
+                  example: Fonepay QR
                 secret_key:
                   type: string
                 public_key:
                   type: string
                 merchant_code:
-                  type: string
+                  type: integer
+                  example: '9851193791'
                 username:
                   type: string
+                  example: BHANJA11301
                 password:
                   type: string
+                  example: Sabina.270@#
                 _method:
                   type: string
                   example: PUT
@@ -2553,6 +2588,102 @@ paths:
             type: string
           example: application/json
         - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/orders:
+    get:
+      tags:
+        - Admin > Order
+      summary: show all orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: payment_option_id
+          in: query
+          schema:
+            type: string
+        - name: date_from
+          in: query
+          schema:
+            type: string
+        - name: date_to
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: >-
+            pending,confirmed,processing,shipped,delivered,cancelled,refunded,failed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/orders/{id}:
+    get:
+      tags:
+        - Admin > Order
+      summary: show single order data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/orders/{order}/payments/cod:
+    post:
+      tags:
+        - Admin > Order
+      summary: compelete COD order update status
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: order
           in: path
           schema:
             type: string

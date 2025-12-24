@@ -1360,6 +1360,58 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "check order fonepay payment qr status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "order_id",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "prn",
+											"value": "76855fde-ec06-44e6-828f-49ff8b7d5b71",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/fonepay/order-payments/qr/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"fonepay",
+										"order-payments",
+										"qr",
+										"status"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3060,7 +3112,7 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "",
+											"value": "Fonepay QR",
 											"type": "text"
 										},
 										{
@@ -3075,17 +3127,17 @@
 										},
 										{
 											"key": "merchant_code",
-											"value": "",
+											"value": "9851193791",
 											"type": "text"
 										},
 										{
 											"key": "username",
-											"value": "",
+											"value": "BHANJA11301",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "",
+											"value": "Sabina.270@#",
 											"type": "text"
 										},
 										{
@@ -4036,6 +4088,164 @@
 										"admin",
 										"pos-orders",
 										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "show all orders",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/orders?pagination_limit&payment_option_id&date_from&date_to&search_keyword&user_id&status=pending,confirmed,processing,shipped,delivered,cancelled,refunded,failed",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": null
+										},
+										{
+											"key": "payment_option_id",
+											"value": null
+										},
+										{
+											"key": "date_from",
+											"value": null
+										},
+										{
+											"key": "date_to",
+											"value": null
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										},
+										{
+											"key": "user_id",
+											"value": null
+										},
+										{
+											"key": "status",
+											"value": "pending,confirmed,processing,shipped,delivered,cancelled,refunded,failed"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single order data",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/orders/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"orders",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "compelete COD order update status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/orders/{order}/payments/cod",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"orders",
+										"{order}",
+										"payments",
+										"cod"
 									]
 								}
 							},
