@@ -1341,7 +1341,7 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "order_id",
+											"key": "amount",
 											"value": "5",
 											"type": "text"
 										}
@@ -1383,19 +1383,13 @@
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "order_id",
-											"value": "5",
-											"type": "text"
-										},
-										{
-											"key": "prn",
-											"value": "76855fde-ec06-44e6-828f-49ff8b7d5b71",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\n    \"prn\": \"296efce4-f9d3-46c0-af56-dc1277a80ea6\",\n    \"payment_option_id\": 1,\n    \"tax\": 50,\n    \"discount_amount\": 20,\n    \"delivery_charge\": 100,\n    \"order_items\": [\n        {\n            \"product_id\": 1,\n            \"quantity\": 2,\n            \"unit_price\": 500\n        },\n        {\n            \"product_id\": 2,\n            \"quantity\": 1,\n            \"unit_price\": 1200\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "{{url}}/api/fonepay/order-payments/qr/status",
@@ -4693,6 +4687,104 @@
 										"api",
 										"admin",
 										"city-delivery-rates"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fonepay dynamic qr Copy",
+					"item": [
+						{
+							"name": "download fonepay dynamic qr",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "amount",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/fonepay/third-party-dynamic-qr-download",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"fonepay",
+										"third-party-dynamic-qr-download"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "check order fonepay payment qr status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"prn\": \"296efce4-f9d3-46c0-af56-dc1277a80ea6\",\n    \"payment_option_id\": 1,\n    \"tax\": 50,\n    \"discount_amount\": 20,\n    \"delivery_charge\": 100,\n    \"order_items\": [\n        {\n            \"product_id\": 1,\n            \"quantity\": 2,\n            \"unit_price\": 500\n        },\n        {\n            \"product_id\": 2,\n            \"quantity\": 1,\n            \"unit_price\": 1200\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/fonepay/order-payments/qr/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"fonepay",
+										"order-payments",
+										"qr",
+										"status"
 									]
 								}
 							},

@@ -64,6 +64,7 @@ tags:
   - name: Admin > Province
   - name: Admin > City
   - name: Admin > City Delivery Rate
+  - name: Admin > Fonepay dynamic qr Copy
 paths:
   /api/login:
     post:
@@ -951,7 +952,7 @@ paths:
             schema:
               type: object
               properties:
-                order_id:
+                amount:
                   type: integer
                   example: '5'
       security:
@@ -974,16 +975,22 @@ paths:
       summary: check order fonepay payment qr status
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
-              properties:
-                order_id:
-                  type: integer
-                  example: '5'
-                prn:
-                  type: string
-                  example: 76855fde-ec06-44e6-828f-49ff8b7d5b71
+              example:
+                prn: 296efce4-f9d3-46c0-af56-dc1277a80ea6
+                payment_option_id: 1
+                tax: 50
+                discount_amount: 20
+                delivery_charge: 100
+                order_items:
+                  - product_id: 1
+                    quantity: 2
+                    unit_price: 500
+                  - product_id: 2
+                    quantity: 1
+                    unit_price: 1200
       security:
         - bearerAuth: []
       parameters:
@@ -2933,6 +2940,69 @@ paths:
                 rate:
                   type: integer
                   example: '200'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/fonepay/third-party-dynamic-qr-download:
+    post:
+      tags:
+        - Admin > Fonepay dynamic qr Copy
+      summary: download fonepay dynamic qr
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  example: '5'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/fonepay/order-payments/qr/status:
+    post:
+      tags:
+        - Admin > Fonepay dynamic qr Copy
+      summary: check order fonepay payment qr status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                prn: 296efce4-f9d3-46c0-af56-dc1277a80ea6
+                payment_option_id: 1
+                tax: 50
+                discount_amount: 20
+                delivery_charge: 100
+                order_items:
+                  - product_id: 1
+                    quantity: 2
+                    unit_price: 500
+                  - product_id: 2
+                    quantity: 1
+                    unit_price: 1200
       security:
         - bearerAuth: []
       parameters:
