@@ -44,7 +44,7 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "hanciephago@gmail.com",
+											"value": "hanciephago8@gmail.com",
 											"type": "text"
 										},
 										{
@@ -62,6 +62,116 @@
 									"path": [
 										"api",
 										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "resend verification",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/resend-verification",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"resend-verification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "forgot password mail",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/forgot-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reset password",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "248129",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password@720",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/reset-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"reset-password"
 									]
 								}
 							},
@@ -213,12 +323,12 @@
 										},
 										{
 											"key": "email",
-											"value": "hanciephago@gmail.com",
+											"value": "wanemclub@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "mobile_no",
-											"value": "545657678",
+											"value": "54565767887",
 											"type": "text"
 										},
 										{

@@ -79,7 +79,85 @@ paths:
               properties:
                 email:
                   type: string
+                  example: hanciephago8@gmail.com
+                password:
+                  type: string
+                  example: Password@720
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/auth/resend-verification:
+    post:
+      tags:
+        - Client > Auth
+      summary: resend verification
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
                   example: hanciephago@gmail.com
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/auth/forgot-password:
+    post:
+      tags:
+        - Client > Auth
+      summary: forgot password mail
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/auth/reset-password:
+    post:
+      tags:
+        - Client > Auth
+      summary: reset password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: integer
+                  example: '248129'
                 password:
                   type: string
                   example: Password@720
@@ -181,10 +259,10 @@ paths:
                   example: Hello
                 email:
                   type: string
-                  example: hanciephago@gmail.com
+                  example: wanemclub@gmail.com
                 mobile_no:
                   type: integer
-                  example: '545657678'
+                  example: '54565767887'
                 password:
                   type: string
                   example: Password@720
