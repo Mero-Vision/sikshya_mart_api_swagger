@@ -4630,12 +4630,12 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "Birtamode",
+											"value": "Kathmandu",
 											"type": "text"
 										},
 										{
 											"key": "province_id",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										}
 									]
@@ -4828,12 +4828,12 @@
 										},
 										{
 											"key": "min_weight_kg",
-											"value": "50",
+											"value": "0",
 											"type": "text"
 										},
 										{
 											"key": "max_weight_kg",
-											"value": "200",
+											"value": "49",
 											"type": "text"
 										},
 										{
@@ -4852,6 +4852,103 @@
 										"api",
 										"admin",
 										"city-delivery-rates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit city delivery rate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "min_weight_kg",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "max_weight_kg",
+											"value": "49",
+											"type": "text"
+										},
+										{
+											"key": "rate",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/city-delivery-rates/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"city-delivery-rates",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete city delivery rate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/city-delivery-rates/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"city-delivery-rates",
+										"{id}"
 									]
 								}
 							},
