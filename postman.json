@@ -176,6 +176,47 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "verify forgot passowrd otp",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "otp",
+											"value": "688146",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/forgot-password/verify-otp",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"forgot-password",
+										"verify-otp"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -2040,7 +2081,7 @@
 										},
 										{
 											"key": "name",
-											"value": " Organic Sunflower Oil 1L",
+											"value": " Organic Mustard Oil 2L",
 											"type": "text"
 										},
 										{
@@ -2060,7 +2101,7 @@
 										},
 										{
 											"key": "sku",
-											"value": " SUN-OIL-1L",
+											"value": " SUN-OIL-2L",
 											"type": "text"
 										},
 										{
@@ -2096,16 +2137,21 @@
 										{
 											"key": "product_image[]",
 											"type": "file",
-											"src": "/Users/hanciephago/Desktop/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg"
+											"src": "/C:/Users/user/Videos/Screenshot 2025-08-23 191851.png"
 										},
 										{
 											"key": "product_image[]",
 											"type": "file",
-											"src": "/Users/hanciephago/Desktop/Screenshot 2025-10-24 at 9.28.33 PM.png"
+											"src": "/C:/Users/user/Videos/Screenshot 2025-08-16 020628.png"
 										},
 										{
 											"key": "weight_kg",
 											"value": "1.2",
+											"type": "text"
+										},
+										{
+											"key": "product_type",
+											"value": "personal",
 											"type": "text"
 										}
 									]
@@ -2219,6 +2265,11 @@
 											"src": "/Users/hanciephago/Desktop/Black-and-Red-Simple-Car-Icon-Industrial-Logo-(6).jpeg"
 										},
 										{
+											"key": "product_type",
+											"value": "business",
+											"type": "text"
+										},
+										{
 											"key": "_method",
 											"value": "PUT",
 											"type": "text"
@@ -2269,7 +2320,7 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{url}}/api/admin/products?pagination_limit=10&search_keyword",
+									"raw": "{{url}}/api/admin/products?pagination_limit=10&search_keyword&product_type=personal",
 									"host": [
 										"{{url}}"
 									],
@@ -2286,6 +2337,10 @@
 										{
 											"key": "search_keyword",
 											"value": null
+										},
+										{
+											"key": "product_type",
+											"value": "personal"
 										}
 									]
 								}
@@ -4899,6 +4954,313 @@
 								}
 							},
 							"response": []
+						}
+					]
+				},
+				{
+					"name": "Dashboard",
+					"item": [
+						{
+							"name": "Overview",
+							"item": [
+								{
+									"name": "Sales Analytics",
+									"item": [
+										{
+											"name": "sales of last year",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/dashboard/sales/last-year",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"dashboard",
+														"sales",
+														"last-year"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "sales this year",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/dashboard/sales/this-year",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"dashboard",
+														"sales",
+														"this-year"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "sales last 7 days",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/dashboard/sales/last-7-days",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"dashboard",
+														"sales",
+														"last-7-days"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "sales last 30 days Copy",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/dashboard/sales/last-30-days",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"dashboard",
+														"sales",
+														"last-30-days"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "show dashboard overview",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/analytics-count",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"analytics-count"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "top selling products",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/top-selling-products",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"top-selling-products"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all low stock products",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/low-stock",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"low-stock"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show recent order list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/recent-orders",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"recent-orders"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}

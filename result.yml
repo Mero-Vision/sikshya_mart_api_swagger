@@ -65,6 +65,9 @@ tags:
   - name: Admin > City
   - name: Admin > City Delivery Rate
   - name: Admin > Fonepay dynamic qr Copy
+  - name: Admin > Dashboard
+  - name: Admin > Dashboard > Overview
+  - name: Admin > Dashboard > Overview > Sales Analytics
 paths:
   /api/login:
     post:
@@ -161,6 +164,34 @@ paths:
                 password:
                   type: string
                   example: Password@720
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/auth/forgot-password/verify-otp:
+    post:
+      tags:
+        - Client > Auth
+      summary: verify forgot passowrd otp
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                otp:
+                  type: integer
+                  example: '688146'
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
       parameters:
         - name: Accept
           in: header
@@ -1339,7 +1370,7 @@ paths:
                   example: ' 2'
                 name:
                   type: string
-                  example: ' Organic Sunflower Oil 1L'
+                  example: ' Organic Mustard Oil 2L'
                 description:
                   type: string
                   example: ' 100% pure sunflower oil.'
@@ -1351,7 +1382,7 @@ paths:
                   example: ' 350'
                 sku:
                   type: string
-                  example: ' SUN-OIL-1L'
+                  example: ' SUN-OIL-2L'
                 unit_value:
                   type: string
                   example: ' 1'
@@ -1376,6 +1407,9 @@ paths:
                 weight_kg:
                   type: number
                   example: '1.2'
+                product_type:
+                  type: string
+                  example: personal
       security:
         - bearerAuth: []
       parameters:
@@ -1410,6 +1444,11 @@ paths:
           in: query
           schema:
             type: string
+        - name: product_type
+          in: query
+          schema:
+            type: string
+          example: personal
       responses:
         '200':
           description: OK
@@ -1597,6 +1636,9 @@ paths:
                 product_image[]:
                   type: string
                   format: binary
+                product_type:
+                  type: string
+                  example: business
                 _method:
                   type: string
                   example: PUT
@@ -3081,6 +3123,150 @@ paths:
                   - product_id: 2
                     quantity: 1
                     unit_price: 1200
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/sales/last-year:
+    get:
+      tags:
+        - Admin > Dashboard > Overview > Sales Analytics
+      summary: sales of last year
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/sales/this-year:
+    get:
+      tags:
+        - Admin > Dashboard > Overview > Sales Analytics
+      summary: sales this year
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/sales/last-7-days:
+    get:
+      tags:
+        - Admin > Dashboard > Overview > Sales Analytics
+      summary: sales last 7 days
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/sales/last-30-days:
+    get:
+      tags:
+        - Admin > Dashboard > Overview > Sales Analytics
+      summary: sales last 30 days Copy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/analytics-count:
+    get:
+      tags:
+        - Admin > Dashboard > Overview
+      summary: show dashboard overview
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/top-selling-products:
+    get:
+      tags:
+        - Admin > Dashboard > Overview
+      summary: top selling products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/low-stock:
+    get:
+      tags:
+        - Admin > Dashboard > Overview
+      summary: show all low stock products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard/recent-orders:
+    get:
+      tags:
+        - Admin > Dashboard > Overview
+      summary: show recent order list
       security:
         - bearerAuth: []
       parameters:
