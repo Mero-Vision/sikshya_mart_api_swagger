@@ -3,7 +3,7 @@
         "title": "Sikshya Mart API Swagger",
         "version": "1.0",
         "description": "Sikshya Mart API documentation",
-        "termsOfService": "#",
+        "termsOfService": "https://sikshyamart.com/terms",
         "license": {
             "name": "MIT",
             "url": "https://es.wikipedia.org/wiki/Licencia_MIT"

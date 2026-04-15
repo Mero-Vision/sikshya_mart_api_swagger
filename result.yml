@@ -7,7 +7,7 @@ info:
     url: https://github.com/joolfe/logoBanner.png
     backgroundColor: '#FFFFFF'
     altText: logo
-  termsOfService: '#'
+  termsOfService: https://sikshyamart.com/terms
   contact:
     name: Mero Vision
     url: https://merovision.com
@@ -29,6 +29,7 @@ components:
 tags:
   - name: Client
   - name: Client > Auth
+  - name: Client > Google Auth
   - name: Client > Product
   - name: Client > Site Settings
   - name: Client > Category
@@ -43,6 +44,7 @@ tags:
   - name: Client > City
   - name: Client > Fonepay dynamic qr
   - name: Client > Payment Option
+  - name: Client > Product Sections
   - name: Admin
   - name: Admin > Auth
   - name: Admin > User
@@ -68,6 +70,7 @@ tags:
   - name: Admin > Dashboard
   - name: Admin > Dashboard > Overview
   - name: Admin > Dashboard > Overview > Sales Analytics
+  - name: Admin > Product Section
 paths:
   /api/login:
     post:
@@ -82,7 +85,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: hanciephago8@gmail.com
+                  example: hanciephago@gmail.com
                 password:
                   type: string
                   example: Password@720
@@ -203,26 +206,51 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/auth/google:
+    post:
+      tags:
+        - Client > Google Auth
+      summary: google auth
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id_token:
+                  type: string
+                  example: hy
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/products:
     get:
       tags:
         - Client > Product
-      summary: show all product list
+      summary: show all personal product list
       parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
         - name: pagination_limit
           in: query
           schema:
             type: integer
           example: '8'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-        - name: sub_category_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
       responses:
         '200':
           description: Successful response
@@ -235,6 +263,66 @@ paths:
       summary: show single product list
       parameters:
         - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/business-products:
+    get:
+      tags:
+        - Client > Product
+      summary: show all business products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/personal-products-by-sub-category/{subcategyid}:
+    get:
+      tags:
+        - Client > Product
+      summary: show personal product by sub category
+      parameters:
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '9'
+        - name: subcategyid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/business-products-by-sub-category/{subcategyid}:
+    get:
+      tags:
+        - Client > Product
+      summary: show business product by sub category
+      parameters:
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '9'
+        - name: subcategyid
           in: path
           schema:
             type: string
@@ -300,6 +388,12 @@ paths:
                 password_confirmation:
                   type: string
                   example: Password@720
+                user_type:
+                  type: string
+                  example: personal,business
+                vat_pan_no:
+                  type: integer
+                  example: '34535435'
       parameters:
         - name: Accept
           in: header
@@ -409,6 +503,24 @@ paths:
       tags:
         - Client > User
       summary: show user profile
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/user-delete:
+    delete:
+      tags:
+        - Client > User
+      summary: delete user account
       security:
         - bearerAuth: []
       parameters:
@@ -622,7 +734,7 @@ paths:
               properties:
                 province_id:
                   type: integer
-                  example: '2'
+                  example: '1'
                 city_id:
                   type: integer
                   example: '1'
@@ -634,7 +746,7 @@ paths:
                   example: '45565445'
                 address:
                   type: string
-                  example: Bhadrapur
+                  example: Biratmode
       security:
         - bearerAuth: []
       parameters:
@@ -747,7 +859,7 @@ paths:
               properties:
                 status:
                   type: boolean
-                  example: 'false'
+                  example: 'true'
                 _method:
                   type: string
                   example: PUT
@@ -782,6 +894,7 @@ paths:
               example:
                 payment_option_id: 1
                 tax: 50
+                delivery_address_id: 2
                 discount_amount: 20
                 delivery_charge: 100
                 order_items:
@@ -1131,6 +1244,32 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/product-sections:
+    get:
+      tags:
+        - Client > Product Sections
+      summary: show all product sections
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/product-sections/{slug}:
+    get:
+      tags:
+        - Client > Product Sections
+      summary: single show product section data
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/login:
     post:
       tags:
@@ -1213,7 +1352,7 @@ paths:
               properties:
                 name:
                   type: string
-                  example: iPhone2
+                  example: iPhone
                 parent_id:
                   type: integer
                   example: '1'
@@ -1370,7 +1509,7 @@ paths:
                   example: ' 2'
                 name:
                   type: string
-                  example: ' Organic Mustard Oil 2L'
+                  example: ' Organic Mustard Oil 2'
                 description:
                   type: string
                   example: ' 100% pure sunflower oil.'
@@ -1382,7 +1521,7 @@ paths:
                   example: ' 350'
                 sku:
                   type: string
-                  example: ' SUN-OIL-2L'
+                  example: ' SUN-OIL-2'
                 unit_value:
                   type: string
                   example: ' 1'
@@ -1799,6 +1938,99 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bulk-product-rate-update:
+    post:
+      tags:
+        - Admin > Product
+      summary: bulk product update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                products:
+                  - id: 1
+                    sale_price: 799
+                    cost_price: 999
+                  - id: 2
+                    sale_price: 499
+                    cost_price: 999
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/short-products:
+    get:
+      tags:
+        - Admin > Product
+      summary: show short product list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: sub_category_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/products/{id}/toggle-active:
+    post:
+      tags:
+        - Admin > Product
+      summary: toggle is active product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: PATCH
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -2294,6 +2526,19 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: user_type
+          in: query
+          schema:
+            type: string
+          example: personal, business
       responses:
         '200':
           description: Successful response
@@ -2359,6 +2604,39 @@ paths:
             type: string
           example: application/json
         - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customers/{id}/reset-password:
+    post:
+      tags:
+        - Admin > Customer
+      summary: reset customer password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                new_password:
+                  type: string
+                new_password_confirmation:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
           in: path
           schema:
             type: string
@@ -2761,18 +3039,12 @@ paths:
           in: query
           schema:
             type: string
-        - name: status
-          in: query
-          schema:
-            type: string
-          example: >-
-            pending,confirmed,processing,shipped,delivered,cancelled,refunded,failed
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/admin/orders/{id}:
+  /api/admin/orders/8:
     get:
       tags:
         - Admin > Order
@@ -2785,11 +3057,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
@@ -2811,6 +3078,64 @@ paths:
             type: string
           example: application/json
         - name: order
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/orders/{id}/status:
+    post:
+      tags:
+        - Admin > Order
+      summary: change order status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: confirmed,processing,shipped,delivered,cancelled
+                _method:
+                  type: string
+                  example: PATCH
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customers/{customer_id}/orders:
+    get:
+      tags:
+        - Admin > Order
+      summary: show customer orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
           in: path
           schema:
             type: string
@@ -3338,6 +3663,228 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/product-sections:
+    post:
+      tags:
+        - Admin > Product Section
+      summary: store product section name
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Deal of the Day
+                is_active:
+                  type: integer
+                  example: '1'
+                sort_order:
+                  type: integer
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Product Section
+      summary: show product section data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/product-sections/{id}:
+    post:
+      tags:
+        - Admin > Product Section
+      summary: update product section name
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Deal of the Day
+                is_active:
+                  type: integer
+                  example: '1'
+                sort_order:
+                  type: integer
+                  example: '1'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Product Section
+      summary: show single  product section data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Product Section
+      summary: delete product sections
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/product-sections/1/attach-product:
+    post:
+      tags:
+        - Admin > Product Section
+      summary: product section attach product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_id: 1
+                sort_order: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/product-sections/{id}/sync-products:
+    post:
+      tags:
+        - Admin > Product Section
+      summary: product section sync product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                products:
+                  - id: 5
+                    sort_order: 1
+                  - id: 10
+                    sort_order: 2
+                  - id: 8
+                    sort_order: 3
+                  - id: 3
+                    sort_order: 4
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/product-sections/{id}/detach-product:
+    delete:
+      tags:
+        - Admin > Product Section
+      summary: product section detach products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
